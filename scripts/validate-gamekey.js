@@ -1,5 +1,5 @@
 /**
- * Validate gamekey.csv parse + daily unlock rules
+ * Validate gamekey.csv parse + structure (supports optional theme column)
  */
 const fs = require("fs");
 const path = require("path");
@@ -16,11 +16,8 @@ function parseCsv(text) {
       if (ch === '"' && next === '"') {
         field += '"';
         i++;
-      } else if (ch === '"') {
-        inQuotes = false;
-      } else {
-        field += ch;
-      }
+      } else if (ch === '"') inQuotes = false;
+      else field += ch;
       continue;
     }
     if (ch === '"') inQuotes = true;
@@ -44,29 +41,34 @@ function parseCsv(text) {
 const text = fs.readFileSync(path.join(__dirname, "..", "gamekey.csv"), "utf8");
 const rows = parseCsv(text);
 const header = rows[0];
-const idx = Object.fromEntries(header.map((h, i) => [h, i]));
+const idx = Object.fromEntries(header.map((h, i) => [h.trim(), i]));
 
-console.log("rows", rows.length - 1);
-console.log("first", rows[1][idx.date], rows[1][idx.easy_category]);
-console.log("tricky", JSON.stringify(rows[1][idx.tricky_category]));
-console.log("last", rows[rows.length - 1][idx.date]);
+const required = ["date"];
+["easy", "medium", "hard", "tricky"].forEach((p) => {
+  required.push(`${p}_category`, `${p}_term1`, `${p}_term2`, `${p}_term3`, `${p}_term4`);
+});
+const missing = required.filter((c) => idx[c] == null);
+if (missing.length) {
+  console.error("Missing columns:", missing.join(", "));
+  process.exit(1);
+}
 
-const today = "2026-09-28";
-const unlocked = rows.slice(1).filter((r) => r[idx.date] <= today);
-console.log("unlocked on", today, "=", unlocked.length);
-
-// uniqueness + 16 terms
 let errors = 0;
 for (let i = 1; i < rows.length; i++) {
   const r = rows[i];
   const terms = [];
   ["easy", "medium", "hard", "tricky"].forEach((p) => {
-    for (let n = 1; n <= 4; n++) terms.push(r[idx[`${p}_term${n}`]]);
+    for (let n = 1; n <= 4; n++) terms.push(String(r[idx[`${p}_term${n}`]] || "").trim());
   });
-  const uniq = new Set(terms.map((t) => String(t).toLowerCase()));
+  const uniq = new Set(terms.map((t) => t.toLowerCase()));
   if (uniq.size !== 16) {
     console.error("bad terms", r[idx.date], uniq.size);
     errors++;
   }
 }
+
+console.log("rows", rows.length - 1);
+console.log("has theme column:", idx.theme != null);
+console.log("first theme:", rows[1][idx.theme]);
 console.log(errors ? `FAIL ${errors}` : "CSV VALID");
+process.exit(errors ? 1 : 0);

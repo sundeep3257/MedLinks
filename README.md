@@ -33,17 +33,16 @@ Then open the URL shown in the terminal.
 
 ## Puzzle data (`gamekey.csv`)
 
-`gamekey.csv` is the source of truth. Each row is one daily puzzle:
+`gamekey.csv` is the source of truth. Each row is one daily puzzle with a board-wide **theme** (for example Labor and Delivery, Oncology, Orthopedics). All 16 terms fit that theme, so groups can’t be solved merely by being “the only vaccines/bones/labs on the board.”
 
 | Column groups | Contents |
 | --- | --- |
 | `date` | `YYYY-MM-DD` |
+| `theme` | Board-wide topic (not shown as a spoiler in-game) |
 | `easy_*` | category, 4 terms, explanation |
 | `medium_*` | category, 4 terms, explanation |
 | `hard_*` | category, 4 terms, explanation |
 | `tricky_*` | category, 4 terms, explanation |
-
-Categories are designed to require medical reasoning rather than shared prefixes/suffixes (for example, not four obvious `-olol` or `-pril` drug names).
 
 ### Add future puzzles
 

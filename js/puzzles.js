@@ -1,65 +1,15 @@
 /**
- * MedLinks — puzzle seed data (50 puzzles)
- * Runtime ground truth is /gamekey.csv. Regenerate CSV via:
- *   node scripts/build-harder-puzzles.js
+ * MedLinks themed puzzle seed data.
+ * Runtime source of truth: /gamekey.csv
  */
 (function (global) {
   "use strict";
-  const MED_PUZZLES = [
+  global.MED_PUZZLES = [
   {
     "id": 1,
     "groups": [
       {
-        "category": "Classic Causes of Pancreatitis",
-        "difficulty": 1,
-        "terms": [
-          "Gallstones",
-          "Alcohol",
-          "Triglycerides",
-          "ERCP"
-        ],
-        "explanation": "Common precipitants of acute pancreatitis."
-      },
-      {
-        "category": "Bones Forming the Acetabulum",
-        "difficulty": 2,
-        "terms": [
-          "Ilium",
-          "Ischium",
-          "Pubis",
-          "Triradiate Cartilage"
-        ],
-        "explanation": "The three pelvic bones meet at the acetabulum; the triradiate cartilage joins them in childhood."
-      },
-      {
-        "category": "Vitamin Deficiencies With Classic Names",
-        "difficulty": 3,
-        "terms": [
-          "Beriberi",
-          "Pellagra",
-          "Scurvy",
-          "Rickets"
-        ],
-        "explanation": "B1, B3, C, and D deficiency syndromes."
-      },
-      {
-        "category": "Things That Can Be Staged",
-        "difficulty": 4,
-        "terms": [
-          "Cancer",
-          "Sleep",
-          "Labor",
-          "Kidney Disease"
-        ],
-        "explanation": "Clinical staging systems exist for malignancy, sleep cycles, labor progress, and CKD."
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "groups": [
-      {
-        "category": "Shock States",
+        "category": "Types of Shock",
         "difficulty": 1,
         "terms": [
           "Hypovolemic",
@@ -67,22 +17,11 @@
           "Distributive",
           "Obstructive"
         ],
-        "explanation": "The four physiologic categories of shock."
-      },
-      {
-        "category": "Live Attenuated Vaccines",
-        "difficulty": 2,
-        "terms": [
-          "MMR",
-          "Varicella",
-          "Yellow Fever",
-          "Rotavirus"
-        ],
-        "explanation": "Vaccines typically avoided in pregnancy and severe immunocompromise."
+        "explanation": "The four physiologic shock categories."
       },
       {
         "category": "Heart Valves",
-        "difficulty": 3,
+        "difficulty": 2,
         "terms": [
           "Mitral",
           "Tricuspid",
@@ -92,1131 +31,15 @@
         "explanation": "The four cardiac valves."
       },
       {
-        "category": "___ Fever",
-        "difficulty": 4,
-        "terms": [
-          "Rheumatic",
-          "Yellow",
-          "Q",
-          "Scarlet"
-        ],
-        "explanation": "Each completes a well-known febrile illness name."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "groups": [
-      {
-        "category": "Drugs That Prolong the QT Interval",
-        "difficulty": 1,
-        "terms": [
-          "Ondansetron",
-          "Haloperidol",
-          "Azithromycin",
-          "Methadone"
-        ],
-        "explanation": "Agents from unrelated classes that share QT-prolongation risk."
-      },
-      {
-        "category": "Fat-Soluble Vitamins",
-        "difficulty": 2,
-        "terms": [
-          "Retinol",
-          "Cholecalciferol",
-          "Tocopherol",
-          "Phylloquinone"
-        ],
-        "explanation": "Vitamins A, D, E, and K by chemical name rather than letter."
-      },
-      {
-        "category": "Parasympathetic Cranial Nerves",
+        "category": "ACS Presentations",
         "difficulty": 3,
         "terms": [
-          "Oculomotor",
-          "Facial",
-          "Glossopharyngeal",
-          "Vagus"
-        ],
-        "explanation": "CN III, VII, IX, and X carry parasympathetic fibers."
-      },
-      {
-        "category": "Pressures Reported in mm Hg",
-        "difficulty": 4,
-        "terms": [
-          "Blood Pressure",
-          "ICP",
-          "CVP",
-          "IOP"
-        ],
-        "explanation": "Arterial, intracranial, central venous, and intraocular pressures."
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "groups": [
-      {
-        "category": "AIDS-Defining Illnesses",
-        "difficulty": 1,
-        "terms": [
-          "Pneumocystis",
-          "Kaposi Sarcoma",
-          "Toxoplasmosis",
-          "Cryptococcal Meningitis"
-        ],
-        "explanation": "Classic opportunistic conditions defining advanced HIV."
-      },
-      {
-        "category": "Granulocytes",
-        "difficulty": 2,
-        "terms": [
-          "Neutrophil",
-          "Eosinophil",
-          "Basophil",
-          "Mast Cell"
-        ],
-        "explanation": "Granule-containing leukocytes (mast cells are tissue-based kin)."
-      },
-      {
-        "category": "Meningeal Signs",
-        "difficulty": 3,
-        "terms": [
-          "Nuchal Rigidity",
-          "Kernig",
-          "Brudzinski",
-          "Jolt Accentuation"
-        ],
-        "explanation": "Bedside findings used when evaluating meningitis."
-      },
-      {
-        "category": "Hospital Emergency Codes",
-        "difficulty": 4,
-        "terms": [
-          "Blue",
-          "Red",
-          "Stroke",
-          "STEMI"
-        ],
-        "explanation": "Common hospital activation names for emergencies."
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "groups": [
-      {
-        "category": "Causes of High Anion Gap Acidosis",
-        "difficulty": 1,
-        "terms": [
-          "Lactate",
-          "Ketoacidosis",
-          "Methanol",
-          "Uremia"
-        ],
-        "explanation": "Major contributors to elevated anion gap metabolic acidosis."
-      },
-      {
-        "category": "Epidermal Strata",
-        "difficulty": 2,
-        "terms": [
-          "Corneum",
-          "Lucidum",
-          "Granulosum",
-          "Spinosum"
-        ],
-        "explanation": "Named layers of the epidermis (basal omitted)."
-      },
-      {
-        "category": "Jones Criteria Major Manifestations",
-        "difficulty": 3,
-        "terms": [
-          "Carditis",
-          "Polyarthritis",
-          "Chorea",
-          "Erythema Marginatum"
-        ],
-        "explanation": "Major Jones criteria for acute rheumatic fever (subcutaneous nodules omitted)."
-      },
-      {
-        "category": "Eponymous Fractures",
-        "difficulty": 4,
-        "terms": [
-          "Colles",
-          "Smith",
-          "Jones",
-          "Bennett"
-        ],
-        "explanation": "Named fracture patterns of the wrist, foot, and hand."
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "groups": [
-      {
-        "category": "Reversible Causes of Dementia (Selected)",
-        "difficulty": 1,
-        "terms": [
-          "B12 Deficiency",
-          "Hypothyroidism",
-          "Normal Pressure Hydrocephalus",
-          "Depression"
-        ],
-        "explanation": "Treatable or partially reversible dementia mimics."
-      },
-      {
-        "category": "Monoamine Neurotransmitters",
-        "difficulty": 2,
-        "terms": [
-          "Dopamine",
-          "Norepinephrine",
-          "Epinephrine",
-          "Serotonin"
-        ],
-        "explanation": "Catecholamines plus serotonin."
-      },
-      {
-        "category": "Endocrine Glands",
-        "difficulty": 3,
-        "terms": [
-          "Thyroid",
-          "Adrenal",
-          "Pituitary",
-          "Parathyroid"
-        ],
-        "explanation": "Classic hormone-producing glands."
-      },
-      {
-        "category": "___ Syndrome",
-        "difficulty": 4,
-        "terms": [
-          "Tourette",
-          "Guillain-Barre",
-          "Nephrotic",
-          "Compartment"
-        ],
-        "explanation": "Well-known named syndromes across specialties."
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "groups": [
-      {
-        "category": "Drugs Requiring Peak and Trough Monitoring",
-        "difficulty": 1,
-        "terms": [
-          "Vancomycin",
-          "Gentamicin",
-          "Tobramycin",
-          "Amikacin"
-        ],
-        "explanation": "Antibiotics commonly dosed with serum level monitoring."
-      },
-      {
-        "category": "Upper Extremity Arteries",
-        "difficulty": 2,
-        "terms": [
-          "Subclavian",
-          "Axillary",
-          "Brachial",
-          "Radial"
-        ],
-        "explanation": "Sequential major arteries of the arm."
-      },
-      {
-        "category": "ABO Blood Groups",
-        "difficulty": 3,
-        "terms": [
-          "A",
-          "B",
-          "AB",
-          "O"
-        ],
-        "explanation": "The four ABO types."
-      },
-      {
-        "category": "Reported as Positive or Negative",
-        "difficulty": 4,
-        "terms": [
-          "Rh Factor",
-          "Gram Stain",
-          "hCG Test",
-          "ANA"
-        ],
-        "explanation": "Common clinical results framed as positive/negative."
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "groups": [
-      {
-        "category": "Serotonin Syndrome Culprits",
-        "difficulty": 1,
-        "terms": [
-          "Linezolid",
-          "Tramadol",
-          "MAO Inhibitors",
-          "Triptans"
-        ],
-        "explanation": "Agents that raise serotonergic tone and can precipitate serotonin syndrome."
-      },
-      {
-        "category": "Markers of Cholestasis",
-        "difficulty": 2,
-        "terms": [
-          "ALP",
-          "GGT",
-          "Bilirubin",
-          "5'-Nucleotidase"
-        ],
-        "explanation": "Labs that rise with biliary obstruction or cholestasis."
-      },
-      {
-        "category": "Imaging Without Ionizing Radiation",
-        "difficulty": 3,
-        "terms": [
-          "MRI",
-          "Ultrasound",
-          "Echocardiography",
-          "Doppler"
-        ],
-        "explanation": "Modalities that do not use x-rays or nuclear radiation."
-      },
-      {
-        "category": "Hypersensitivity Classes",
-        "difficulty": 4,
-        "terms": [
-          "Immediate",
-          "Cytotoxic",
-          "Immune Complex",
-          "Delayed"
-        ],
-        "explanation": "Gell and Coombs types described by mechanism, not Roman numerals."
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "groups": [
-      {
-        "category": "Opioids",
-        "difficulty": 1,
-        "terms": [
-          "Morphine",
-          "Fentanyl",
-          "Methadone",
-          "Buprenorphine"
-        ],
-        "explanation": "Mu-opioid agonists/partial agonists with mixed naming patterns."
-      },
-      {
-        "category": "Cardiac Chambers",
-        "difficulty": 2,
-        "terms": [
-          "Left Atrium",
-          "Right Atrium",
-          "Left Ventricle",
-          "Right Ventricle"
-        ],
-        "explanation": "The four chambers of the heart."
-      },
-      {
-        "category": "Hemophilia-Related Factors",
-        "difficulty": 3,
-        "terms": [
-          "VIII",
-          "IX",
-          "XI",
-          "von Willebrand"
-        ],
-        "explanation": "Factors tied to hemophilia A/B/C and vWD pathophysiology."
-      },
-      {
-        "category": "___ Cell",
-        "difficulty": 4,
-        "terms": [
-          "Reed-Sternberg",
-          "Plasma",
-          "Goblet",
-          "Leydig"
-        ],
-        "explanation": "Distinctive named cell types in pathology and histology."
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "groups": [
-      {
-        "category": "Causes of Metabolic Alkalosis",
-        "difficulty": 1,
-        "terms": [
-          "Vomiting",
-          "Diuretics",
-          "Hyperaldosteronism",
-          "Milk-Alkali"
-        ],
-        "explanation": "Classic generators of metabolic alkalosis."
-      },
-      {
-        "category": "BMP Electrolytes",
-        "difficulty": 2,
-        "terms": [
-          "Sodium",
-          "Potassium",
-          "Chloride",
-          "Bicarbonate"
-        ],
-        "explanation": "The four electrolytes on a standard basic metabolic panel."
-      },
-      {
-        "category": "Mitotic Phases",
-        "difficulty": 3,
-        "terms": [
-          "Prophase",
-          "Metaphase",
-          "Anaphase",
-          "Telophase"
-        ],
-        "explanation": "Stages of mitosis (cytokinesis omitted)."
-      },
-      {
-        "category": "Things Patients Are Asked to Say",
-        "difficulty": 4,
-        "terms": [
-          "Ahh",
-          "Eee",
-          "Ninety-Nine",
-          "Blue Balloons"
-        ],
-        "explanation": "Classic bedside exam prompts."
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "groups": [
-      {
-        "category": "Rate-Control Agents for Atrial Fibrillation",
-        "difficulty": 1,
-        "terms": [
-          "Metoprolol",
-          "Diltiazem",
-          "Verapamil",
-          "Digoxin"
-        ],
-        "explanation": "Common AV-nodal blockers used for AF rate control."
-      },
-      {
-        "category": "Muscles of Mastication",
-        "difficulty": 2,
-        "terms": [
-          "Masseter",
-          "Temporalis",
-          "Medial Pterygoid",
-          "Lateral Pterygoid"
-        ],
-        "explanation": "The four muscles that move the mandible."
-      },
-      {
-        "category": "DNA Bases",
-        "difficulty": 3,
-        "terms": [
-          "Adenine",
-          "Thymine",
-          "Guanine",
-          "Cytosine"
-        ],
-        "explanation": "The four nitrogenous bases of DNA."
-      },
-      {
-        "category": "Can Be Acute or Chronic",
-        "difficulty": 4,
-        "terms": [
-          "Leukemia",
-          "Kidney Injury",
-          "Cholecystitis",
-          "Otitis Media"
-        ],
-        "explanation": "Conditions commonly split by time course."
-      }
-    ]
-  },
-  {
-    "id": 12,
-    "groups": [
-      {
-        "category": "Drugs That Cause Gynecomastia",
-        "difficulty": 1,
-        "terms": [
-          "Spironolactone",
-          "Ketoconazole",
-          "Cimetidine",
-          "Digoxin"
-        ],
-        "explanation": "Medications classically linked to male breast enlargement."
-      },
-      {
-        "category": "Rotator Cuff Muscles",
-        "difficulty": 2,
-        "terms": [
-          "Supraspinatus",
-          "Infraspinatus",
-          "Teres Minor",
-          "Subscapularis"
-        ],
-        "explanation": "The SITS muscles of the shoulder."
-      },
-      {
-        "category": "Antibody Isotypes",
-        "difficulty": 3,
-        "terms": [
-          "IgG",
-          "IgA",
-          "IgM",
-          "IgE"
-        ],
-        "explanation": "Major immunoglobulin classes (IgD omitted)."
-      },
-      {
-        "category": "Intensive Care Units",
-        "difficulty": 4,
-        "terms": [
-          "ICU",
-          "NICU",
-          "PICU",
-          "MICU"
-        ],
-        "explanation": "Common critical-care unit acronyms."
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "groups": [
-      {
-        "category": "Anticoagulants",
-        "difficulty": 1,
-        "terms": [
-          "Warfarin",
-          "Heparin",
-          "Argatroban",
-          "Fondaparinux"
-        ],
-        "explanation": "Agents that impair clotting by different mechanisms."
-      },
-      {
-        "category": "Carotid Sheath Contents",
-        "difficulty": 2,
-        "terms": [
-          "Common Carotid",
-          "Internal Jugular",
-          "Vagus",
-          "Deep Cervical Lymphatics"
-        ],
-        "explanation": "Major structures traveling in the carotid sheath."
-      },
-      {
-        "category": "Raised Skin Lesions",
-        "difficulty": 3,
-        "terms": [
-          "Papule",
-          "Plaque",
-          "Nodule",
-          "Wheal"
-        ],
-        "explanation": "Elevated primary lesion morphologies."
-      },
-      {
-        "category": "Heavy Metal Poisons",
-        "difficulty": 4,
-        "terms": [
-          "Lead",
-          "Mercury",
-          "Arsenic",
-          "Thallium"
-        ],
-        "explanation": "Classic toxic metals."
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "groups": [
-      {
-        "category": "First-Line TB Drugs",
-        "difficulty": 1,
-        "terms": [
-          "Isoniazid",
-          "Rifampin",
-          "Pyrazinamide",
-          "Ethambutol"
-        ],
-        "explanation": "The RIPE regimen for active tuberculosis."
-      },
-      {
-        "category": "Right Lung Anatomy",
-        "difficulty": 2,
-        "terms": [
-          "Upper Lobe",
-          "Middle Lobe",
-          "Lower Lobe",
-          "Horizontal Fissure"
-        ],
-        "explanation": "The right lung has three lobes and a horizontal fissure not present on the left."
-      },
-      {
-        "category": "Apgar Components",
-        "difficulty": 3,
-        "terms": [
-          "Appearance",
-          "Pulse",
-          "Grimace",
-          "Activity"
-        ],
-        "explanation": "Four of five Apgar elements (respiration omitted)."
-      },
-      {
-        "category": "___ Sign",
-        "difficulty": 4,
-        "terms": [
-          "Murphy",
-          "McBurney",
-          "Kehr",
-          "Cullen"
-        ],
-        "explanation": "Eponymous bedside signs in the abdomen."
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "groups": [
-      {
-        "category": "Insulins by Action Profile",
-        "difficulty": 1,
-        "terms": [
-          "Lispro",
-          "Regular",
-          "NPH",
-          "Glargine"
-        ],
-        "explanation": "Rapid, short, intermediate, and long-acting preparations."
-      },
-      {
-        "category": "Primary Taste Qualities",
-        "difficulty": 2,
-        "terms": [
-          "Sweet",
-          "Sour",
-          "Salty",
-          "Bitter"
-        ],
-        "explanation": "Classic taste modalities (umami often taught as a fifth)."
-      },
-      {
-        "category": "Extra Heart Sounds",
-        "difficulty": 3,
-        "terms": [
-          "S3",
-          "S4",
-          "Opening Snap",
-          "Ejection Click"
-        ],
-        "explanation": "Added auscultatory findings beyond S1 and S2."
-      },
-      {
-        "category": "Can Be Transplanted",
-        "difficulty": 4,
-        "terms": [
-          "Kidney",
-          "Liver",
-          "Cornea",
-          "Bone Marrow"
-        ],
-        "explanation": "Organs and tissues commonly transplanted."
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "groups": [
-      {
-        "category": "Drugs That Cause Drug-Induced Lupus",
-        "difficulty": 1,
-        "terms": [
-          "Hydralazine",
-          "Procainamide",
-          "Isoniazid",
-          "Minocycline"
-        ],
-        "explanation": "Classic culprits of drug-induced SLE-like disease."
-      },
-      {
-        "category": "Water-Soluble B Vitamins",
-        "difficulty": 2,
-        "terms": [
-          "Thiamine",
-          "Riboflavin",
-          "Niacin",
-          "Pyridoxine"
-        ],
-        "explanation": "B1, B2, B3, and B6."
-      },
-      {
-        "category": "Anterior Pituitary Hormones",
-        "difficulty": 3,
-        "terms": [
-          "ACTH",
-          "TSH",
-          "GH",
-          "Prolactin"
-        ],
-        "explanation": "Adenohypophysis products (gonadotropins omitted)."
-      },
-      {
-        "category": "Exam Color Findings",
-        "difficulty": 4,
-        "terms": [
-          "Cyanosis",
-          "Jaundice",
-          "Pallor",
-          "Erythema"
-        ],
-        "explanation": "Clinical color changes on physical exam."
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "groups": [
-      {
-        "category": "Causes of Hyperkalemia",
-        "difficulty": 1,
-        "terms": [
-          "ACE Inhibitors",
-          "Spironolactone",
-          "Succinylcholine",
-          "Tumor Lysis"
-        ],
-        "explanation": "Diverse triggers that raise serum potassium."
-      },
-      {
-        "category": "Tarsal Bones",
-        "difficulty": 2,
-        "terms": [
-          "Talus",
-          "Calcaneus",
-          "Navicular",
-          "Cuboid"
-        ],
-        "explanation": "Major bones of the hindfoot and midfoot."
-      },
-      {
-        "category": "Human Malaria Species",
-        "difficulty": 3,
-        "terms": [
-          "Falciparum",
-          "Vivax",
-          "Ovale",
-          "Malariae"
-        ],
-        "explanation": "The four classic Plasmodium species (without the P. prefix)."
-      },
-      {
-        "category": "Prescription Timing Abbreviations",
-        "difficulty": 4,
-        "terms": [
-          "BID",
-          "TID",
-          "QID",
-          "QHS"
-        ],
-        "explanation": "Twice, three times, four times daily, and at bedtime."
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "groups": [
-      {
-        "category": "Indications for Systemic Steroids",
-        "difficulty": 1,
-        "terms": [
-          "Adrenal Crisis",
-          "Septic Shock",
-          "COPD Flare",
-          "Cerebral Edema"
-        ],
-        "explanation": "Settings where glucocorticoids are commonly given systemically."
-      },
-      {
-        "category": "Refractive Errors",
-        "difficulty": 2,
-        "terms": [
-          "Myopia",
-          "Hyperopia",
-          "Astigmatism",
-          "Presbyopia"
-        ],
-        "explanation": "Common disorders of ocular focusing."
-      },
-      {
-        "category": "Acid-Fast Organisms",
-        "difficulty": 3,
-        "terms": [
-          "M. tuberculosis",
-          "M. leprae",
-          "Nocardia",
-          "Cryptosporidium"
-        ],
-        "explanation": "Pathogens that retain carbol fuchsin (modified acid-fast for some)."
-      },
-      {
-        "category": "___ Disease",
-        "difficulty": 4,
-        "terms": [
-          "Addison",
-          "Cushing",
-          "Graves",
-          "Hashimoto"
-        ],
-        "explanation": "Eponymous endocrine diseases."
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "groups": [
-      {
-        "category": "Drugs for Influenza",
-        "difficulty": 1,
-        "terms": [
-          "Oseltamivir",
-          "Zanamivir",
-          "Peramivir",
-          "Baloxavir"
-        ],
-        "explanation": "Neuraminidase inhibitors and a cap-dependent endonuclease inhibitor."
-      },
-      {
-        "category": "Abnormal Spinal Curves",
-        "difficulty": 2,
-        "terms": [
-          "Kyphosis",
-          "Lordosis",
-          "Scoliosis",
-          "List"
-        ],
-        "explanation": "Terms describing spinal alignment abnormalities."
-      },
-      {
-        "category": "Generalized Seizure Types",
-        "difficulty": 3,
-        "terms": [
-          "Absence",
-          "Tonic-Clonic",
-          "Myoclonic",
-          "Atonic"
-        ],
-        "explanation": "Recognized generalized seizure semiologies."
-      },
-      {
-        "category": "Blood Pressure Numbers",
-        "difficulty": 4,
-        "terms": [
-          "Systolic",
-          "Diastolic",
-          "MAP",
-          "Pulse Pressure"
-        ],
-        "explanation": "Values derived from arterial pressure measurement."
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "groups": [
-      {
-        "category": "Causes of Upper GI Bleed",
-        "difficulty": 1,
-        "terms": [
-          "Peptic Ulcer",
-          "Varices",
-          "Mallory-Weiss",
-          "Gastritis"
-        ],
-        "explanation": "Common etiologies of bleeding proximal to the ligament of Treitz."
-      },
-      {
-        "category": "Distal Carpal Row",
-        "difficulty": 2,
-        "terms": [
-          "Trapezium",
-          "Trapezoid",
-          "Capitate",
-          "Hamate"
-        ],
-        "explanation": "The four distal carpal bones."
-      },
-      {
-        "category": "RNA Hepatitis Viruses",
-        "difficulty": 3,
-        "terms": [
-          "HAV",
-          "HCV",
-          "HEV",
-          "HDV"
-        ],
-        "explanation": "Hepatitis viruses with RNA genomes (HBV is DNA)."
-      },
-      {
-        "category": "Often Clinically Silent",
-        "difficulty": 4,
-        "terms": [
-          "MI",
-          "Ischemia",
-          "Bacteriuria",
-          "Gallstones"
-        ],
-        "explanation": "Conditions that may present with few or atypical symptoms."
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "groups": [
-      {
-        "category": "Causes of Pulmonary Embolism Mimics",
-        "difficulty": 1,
-        "terms": [
-          "Pneumonia",
-          "Pneumothorax",
-          "Pericarditis",
-          "Anxiety"
-        ],
-        "explanation": "Common differentials when PE is considered."
-      },
-      {
-        "category": "Islet Cell Types",
-        "difficulty": 2,
-        "terms": [
-          "Alpha",
-          "Beta",
-          "Delta",
-          "PP"
-        ],
-        "explanation": "Pancreatic islet cells producing glucagon, insulin, somatostatin, and pancreatic polypeptide."
-      },
-      {
-        "category": "Landmark Dermatomes",
-        "difficulty": 3,
-        "terms": [
-          "C5",
-          "T4",
-          "T10",
-          "L4"
-        ],
-        "explanation": "Shoulder, nipple line, umbilicus, and knee landmarks."
-      },
-      {
-        "category": "___ Embolism",
-        "difficulty": 4,
-        "terms": [
-          "Pulmonary",
-          "Amniotic",
-          "Fat",
-          "Air"
-        ],
-        "explanation": "Clinically important embolism types."
-      }
-    ]
-  },
-  {
-    "id": 22,
-    "groups": [
-      {
-        "category": "Nephrotoxic Antibiotics",
-        "difficulty": 1,
-        "terms": [
-          "Gentamicin",
-          "Amphotericin",
-          "Vancomycin",
-          "Colistin"
-        ],
-        "explanation": "Antimicrobials notorious for kidney injury."
-      },
-      {
-        "category": "Major Salivary Glands",
-        "difficulty": 2,
-        "terms": [
-          "Parotid",
-          "Submandibular",
-          "Sublingual",
-          "Von Ebner"
-        ],
-        "explanation": "Named salivary glands (von Ebner are minor serous glands of the tongue)."
-      },
-      {
-        "category": "RAAS Components",
-        "difficulty": 3,
-        "terms": [
-          "Renin",
-          "Angiotensinogen",
-          "ACE",
-          "Aldosterone"
-        ],
-        "explanation": "Key players in the renin–angiotensin–aldosterone system."
-      },
-      {
-        "category": "Mosquito-Borne Encephalitides",
-        "difficulty": 4,
-        "terms": [
-          "West Nile",
-          "St. Louis",
-          "Eastern Equine",
-          "Western Equine"
-        ],
-        "explanation": "Arboviral encephalitides transmitted by mosquitoes."
-      }
-    ]
-  },
-  {
-    "id": 23,
-    "groups": [
-      {
-        "category": "Extrapyramidal Side Effect Drugs",
-        "difficulty": 1,
-        "terms": [
-          "Haloperidol",
-          "Metoclopramide",
-          "Prochlorperazine",
-          "Fluphenazine"
-        ],
-        "explanation": "D2 blockers that commonly cause EPS."
-      },
-      {
-        "category": "Diuretic Classes",
-        "difficulty": 2,
-        "terms": [
-          "Loop",
-          "Thiazide",
-          "Carbonic Anhydrase Inhibitor",
-          "Osmotic"
-        ],
-        "explanation": "Major diuretic categories by mechanism/site."
-      },
-      {
-        "category": "Human Herpesviruses",
-        "difficulty": 3,
-        "terms": [
-          "HSV-1",
-          "VZV",
-          "EBV",
-          "CMV"
-        ],
-        "explanation": "Major herpesviruses of clinical importance."
-      },
-      {
-        "category": "Specified as Left or Right",
-        "difficulty": 4,
-        "terms": [
-          "Heart Failure",
-          "Hemicolectomy",
-          "Pneumothorax",
-          "Hemisphere Stroke"
-        ],
-        "explanation": "Conditions or procedures commonly labeled by side."
-      }
-    ]
-  },
-  {
-    "id": 24,
-    "groups": [
-      {
-        "category": "Broad-Spectrum Antiepileptics",
-        "difficulty": 1,
-        "terms": [
-          "Valproate",
-          "Lamotrigine",
-          "Levetiracetam",
-          "Topiramate"
-        ],
-        "explanation": "Agents used across multiple seizure types."
-      },
-      {
-        "category": "Cranial Vault Bones",
-        "difficulty": 2,
-        "terms": [
-          "Frontal",
-          "Parietal",
-          "Temporal",
-          "Occipital"
-        ],
-        "explanation": "Bones forming the calvarium."
-      },
-      {
-        "category": "Complement Activation Routes",
-        "difficulty": 3,
-        "terms": [
-          "Classical",
-          "Alternative",
-          "Lectin",
-          "Terminal"
-        ],
-        "explanation": "Pathways converging on the membrane attack complex."
-      },
-      {
-        "category": "Anatomic Triangles",
-        "difficulty": 4,
-        "terms": [
-          "Calot",
-          "Scarpa",
-          "Femoral",
-          "Auscultation"
-        ],
-        "explanation": "Named triangles used as clinical landmarks."
-      }
-    ]
-  },
-  {
-    "id": 25,
-    "groups": [
-      {
-        "category": "Causes of Hypoglycemia",
-        "difficulty": 1,
-        "terms": [
-          "Insulin",
-          "Sulfonylureas",
-          "Ethanol",
-          "Addison Disease"
-        ],
-        "explanation": "Classic precipitants of low blood glucose."
-      },
-      {
-        "category": "Extraocular Muscles",
-        "difficulty": 2,
-        "terms": [
-          "Medial Rectus",
-          "Lateral Rectus",
-          "Superior Oblique",
-          "Inferior Rectus"
-        ],
-        "explanation": "Four of the six extraocular muscles."
-      },
-      {
-        "category": "Primary Acid-Base Disorders",
-        "difficulty": 3,
-        "terms": [
-          "Metabolic Acidosis",
-          "Metabolic Alkalosis",
-          "Respiratory Acidosis",
-          "Respiratory Alkalosis"
-        ],
-        "explanation": "The four primary acid-base disturbances."
+          "STEMI",
+          "NSTEMI",
+          "Unstable Angina",
+          "Prinzmetal"
+        ],
+        "explanation": "Acute coronary syndromes and variant angina."
       },
       {
         "category": "___ Heart",
@@ -1227,391 +50,146 @@
           "Soldier's",
           "Boot-Shaped"
         ],
-        "explanation": "Descriptive cardiac terms and eponymous metaphors."
+        "explanation": "Descriptive cardiac nicknames and metaphors."
       }
     ]
   },
   {
-    "id": 26,
+    "id": 2,
     "groups": [
       {
-        "category": "Drugs for Osteoporosis",
+        "category": "Live Attenuated Vaccines",
         "difficulty": 1,
         "terms": [
-          "Alendronate",
-          "Denosumab",
-          "Teriparatide",
-          "Raloxifene"
+          "MMR",
+          "Varicella",
+          "Yellow Fever",
+          "Rotavirus"
         ],
-        "explanation": "Agents from different classes used to treat osteoporosis."
+        "explanation": "Live vaccines generally avoided in pregnancy/severe immunocompromise."
       },
       {
-        "category": "Meninges",
+        "category": "Inactivated / Subunit Vaccines",
         "difficulty": 2,
         "terms": [
-          "Dura",
-          "Arachnoid",
-          "Pia",
-          "Falx Cerebri"
+          "Hepatitis A",
+          "Hepatitis B",
+          "IPV",
+          "Tdap"
         ],
-        "explanation": "The three meningeal layers plus a dural reflection."
+        "explanation": "Non-live vaccine preparations."
       },
       {
-        "category": "Delayed-Type Hypersensitivity",
+        "category": "Vaccine-Preventable Diseases",
         "difficulty": 3,
         "terms": [
-          "PPD",
-          "Contact Dermatitis",
-          "Poison Ivy",
-          "Transplant Rejection"
+          "Polio",
+          "Measles",
+          "Tetanus",
+          "Pertussis"
         ],
-        "explanation": "Type IV T-cell–mediated reactions."
+        "explanation": "Diseases targeted by routine immunization."
       },
       {
-        "category": "Lab Unit Abbreviations",
+        "category": "___ Vaccine Schedule Word",
         "difficulty": 4,
         "terms": [
-          "mg/dL",
-          "mEq/L",
-          "IU/L",
-          "mmHg"
+          "Booster",
+          "Priming",
+          "Catch-Up",
+          "Cocooning"
         ],
-        "explanation": "Common units on laboratory and vital-sign reports."
+        "explanation": "Terms used in immunization strategy discussions."
       }
     ]
   },
   {
-    "id": 27,
+    "id": 3,
     "groups": [
       {
-        "category": "Anticoagulant Reversal Agents",
+        "category": "Stages of Labor",
         "difficulty": 1,
         "terms": [
-          "Vitamin K",
-          "Protamine",
-          "Idarucizumab",
-          "Andexanet"
+          "Latent",
+          "Active",
+          "Transition",
+          "Second Stage"
         ],
-        "explanation": "Agents used to reverse warfarin, heparin, dabigatran, and factor Xa inhibitors."
+        "explanation": "Phases of labor progress (second stage = pushing)."
       },
       {
-        "category": "Intrinsic Hand Muscles",
+        "category": "Fetal Heart Tracing Categories",
         "difficulty": 2,
         "terms": [
-          "Lumbricals",
-          "Dorsal Interossei",
-          "Palmar Interossei",
-          "Adductor Pollicis"
+          "Category I",
+          "Category II",
+          "Category III",
+          "Sinusoidal"
         ],
-        "explanation": "Intrinsic muscles of the hand."
+        "explanation": "NICHD tracing classifications and a sinister pattern."
       },
       {
-        "category": "Hereditary Cancer Genes",
+        "category": "Labor Induction / Augmentation Agents",
         "difficulty": 3,
         "terms": [
-          "BRCA1",
-          "BRCA2",
-          "MLH1",
-          "MSH2"
+          "Oxytocin",
+          "Misoprostol",
+          "Dinoprostone",
+          "Foley Balloon"
         ],
-        "explanation": "Genes linked to breast/ovarian cancer and Lynch syndrome."
+        "explanation": "Pharmacologic and mechanical ripening/induction methods."
       },
       {
-        "category": "Drainable Collections",
+        "category": "Apgar Components",
         "difficulty": 4,
         "terms": [
-          "Abscess",
-          "Empyema",
-          "Hematoma",
-          "Seroma"
+          "Appearance",
+          "Pulse",
+          "Grimace",
+          "Activity"
         ],
-        "explanation": "Fluid collections sometimes managed with drainage."
+        "explanation": "Four of five Apgar score elements."
       }
     ]
   },
   {
-    "id": 28,
+    "id": 4,
     "groups": [
       {
-        "category": "Second-Generation Antipsychotics",
+        "category": "Rotator Cuff Muscles",
         "difficulty": 1,
         "terms": [
-          "Risperidone",
-          "Olanzapine",
-          "Quetiapine",
-          "Clozapine"
+          "Supraspinatus",
+          "Infraspinatus",
+          "Teres Minor",
+          "Subscapularis"
         ],
-        "explanation": "Atypical antipsychotics with varied metabolic/EPS profiles."
+        "explanation": "The SITS muscles."
       },
       {
-        "category": "Secondary Lymphoid Organs",
+        "category": "Carpal Bones (Distal Row)",
         "difficulty": 2,
         "terms": [
-          "Spleen",
-          "Lymph Nodes",
-          "Tonsils",
-          "Peyer Patches"
+          "Trapezium",
+          "Trapezoid",
+          "Capitate",
+          "Hamate"
         ],
-        "explanation": "Sites of adaptive immune activation."
+        "explanation": "Distal carpal row."
       },
       {
-        "category": "Neonatal Respiratory Distress Factors",
+        "category": "Eponymous Fractures",
         "difficulty": 3,
         "terms": [
-          "Surfactant Deficiency",
-          "Prematurity",
-          "Type II Cell",
-          "Atelectasis"
+          "Colles",
+          "Smith",
+          "Jones",
+          "Bennett"
         ],
-        "explanation": "Concepts tied to RDS pathophysiology."
+        "explanation": "Named fracture patterns."
       },
       {
-        "category": "ATLS Primary Survey",
-        "difficulty": 4,
-        "terms": [
-          "Airway",
-          "Breathing",
-          "Circulation",
-          "Disability"
-        ],
-        "explanation": "First four elements of the ABCDE trauma survey."
-      }
-    ]
-  },
-  {
-    "id": 29,
-    "groups": [
-      {
-        "category": "Drugs Affecting Thyroid Hormone",
-        "difficulty": 1,
-        "terms": [
-          "Levothyroxine",
-          "Methimazole",
-          "Amiodarone",
-          "Lithium"
-        ],
-        "explanation": "Agents that replace, block, or disrupt thyroid function."
-      },
-      {
-        "category": "Cardiac Action Potential Phases",
-        "difficulty": 2,
-        "terms": [
-          "Phase 0",
-          "Phase 1",
-          "Phase 2",
-          "Phase 3"
-        ],
-        "explanation": "Ventricular myocyte depolarization and repolarization phases."
-      },
-      {
-        "category": "Tick-Borne Infections",
-        "difficulty": 3,
-        "terms": [
-          "Lyme",
-          "Anaplasmosis",
-          "Babesiosis",
-          "RMSF"
-        ],
-        "explanation": "Important North American tick-transmitted diseases."
-      },
-      {
-        "category": "___ Spot",
-        "difficulty": 4,
-        "terms": [
-          "Koplik",
-          "Roth",
-          "Bitot",
-          "Brushfield"
-        ],
-        "explanation": "Named spots in measles, endocarditis, vitamin A deficiency, and Down syndrome."
-      }
-    ]
-  },
-  {
-    "id": 30,
-    "groups": [
-      {
-        "category": "Asthma Controller Options",
-        "difficulty": 1,
-        "terms": [
-          "Inhaled Steroid",
-          "Montelukast",
-          "Salmeterol",
-          "Theophylline"
-        ],
-        "explanation": "Long-term control therapies from different classes."
-      },
-      {
-        "category": "Gut Wall Layers",
-        "difficulty": 2,
-        "terms": [
-          "Mucosa",
-          "Submucosa",
-          "Muscularis Externa",
-          "Serosa"
-        ],
-        "explanation": "The four histologic layers of much of the GI tract."
-      },
-      {
-        "category": "Clostridium Species",
-        "difficulty": 3,
-        "terms": [
-          "Difficile",
-          "Perfringens",
-          "Tetani",
-          "Botulinum"
-        ],
-        "explanation": "Major pathogenic clostridia (genus omitted for difficulty)."
-      },
-      {
-        "category": "SOAP Note Sections",
-        "difficulty": 4,
-        "terms": [
-          "Subjective",
-          "Objective",
-          "Assessment",
-          "Plan"
-        ],
-        "explanation": "The four parts of a SOAP note."
-      }
-    ]
-  },
-  {
-    "id": 31,
-    "groups": [
-      {
-        "category": "Alkylating Chemotherapy",
-        "difficulty": 1,
-        "terms": [
-          "Cyclophosphamide",
-          "Busulfan",
-          "Cisplatin",
-          "Melphalan"
-        ],
-        "explanation": "DNA-crosslinking agents used in oncology (platinum included)."
-      },
-      {
-        "category": "Purely Motor Cranial Nerves",
-        "difficulty": 2,
-        "terms": [
-          "Trochlear",
-          "Abducens",
-          "Accessory",
-          "Hypoglossal"
-        ],
-        "explanation": "CN IV, VI, XI, and XII are purely motor."
-      },
-      {
-        "category": "Pulseless Arrest Rhythms",
-        "difficulty": 3,
-        "terms": [
-          "VF",
-          "pVT",
-          "Asystole",
-          "PEA"
-        ],
-        "explanation": "Rhythms in adult cardiac arrest algorithms."
-      },
-      {
-        "category": "Can Be Culture-Negative",
-        "difficulty": 4,
-        "terms": [
-          "Endocarditis",
-          "Osteomyelitis",
-          "Sepsis",
-          "Pyelonephritis"
-        ],
-        "explanation": "Infections that sometimes fail to grow in culture."
-      }
-    ]
-  },
-  {
-    "id": 32,
-    "groups": [
-      {
-        "category": "Cardiotoxic Chemotherapeutics",
-        "difficulty": 1,
-        "terms": [
-          "Doxorubicin",
-          "Trastuzumab",
-          "Cyclophosphamide",
-          "5-FU"
-        ],
-        "explanation": "Cancer drugs associated with cardiomyopathy or cardiac injury."
-      },
-      {
-        "category": "Glomerular Filtration Barrier",
-        "difficulty": 2,
-        "terms": [
-          "Endothelium",
-          "Basement Membrane",
-          "Podocyte",
-          "Slit Diaphragm"
-        ],
-        "explanation": "Layers of the glomerular filter."
-      },
-      {
-        "category": "Dermatophyte Site Names",
-        "difficulty": 3,
-        "terms": [
-          "Scalp Ringworm",
-          "Body Ringworm",
-          "Jock Itch",
-          "Athlete's Foot"
-        ],
-        "explanation": "Common names for tinea capitis, corporis, cruris, and pedis."
-      },
-      {
-        "category": "Standard PPE",
-        "difficulty": 4,
-        "terms": [
-          "N95",
-          "Gown",
-          "Gloves",
-          "Eye Protection"
-        ],
-        "explanation": "Core personal protective equipment items."
-      }
-    ]
-  },
-  {
-    "id": 33,
-    "groups": [
-      {
-        "category": "Abortive Migraine Therapies",
-        "difficulty": 1,
-        "terms": [
-          "Sumatriptan",
-          "Dihydroergotamine",
-          "Metoclopramide",
-          "High-Flow Oxygen"
-        ],
-        "explanation": "Acute treatments spanning triptans, ergot, antiemetic, and cluster-adjacent oxygen."
-      },
-      {
-        "category": "Female Internal Genitalia",
-        "difficulty": 2,
-        "terms": [
-          "Uterus",
-          "Ovary",
-          "Fallopian Tube",
-          "Cervix"
-        ],
-        "explanation": "Major organs of the female reproductive tract."
-      },
-      {
-        "category": "Coagulation Pathways",
-        "difficulty": 3,
-        "terms": [
-          "Intrinsic",
-          "Extrinsic",
-          "Common",
-          "Fibrinolysis"
-        ],
-        "explanation": "Classic cascade teaching pathways."
-      },
-      {
-        "category": "___ Fracture",
+        "category": "___ Fracture (Descriptive)",
         "difficulty": 4,
         "terms": [
           "Boxer's",
@@ -1619,181 +197,328 @@
           "March",
           "Greenstick"
         ],
-        "explanation": "Descriptive fracture names by mechanism or appearance."
+        "explanation": "Fractures named by mechanism or appearance."
       }
     ]
   },
   {
-    "id": 34,
+    "id": 5,
     "groups": [
       {
-        "category": "Pulmonary Hypertension Drug Classes",
+        "category": "Tumor Suppressor Genes",
         "difficulty": 1,
         "terms": [
-          "Sildenafil",
-          "Bosentan",
-          "Epoprostenol",
-          "Riociguat"
+          "TP53",
+          "RB1",
+          "BRCA1",
+          "APC"
         ],
-        "explanation": "PDE-5, endothelin, prostacyclin, and sGC stimulator examples."
+        "explanation": "Classic tumor suppressors."
       },
       {
-        "category": "Middle Ear Ossicles",
+        "category": "Oncogenic Viruses",
         "difficulty": 2,
         "terms": [
-          "Malleus",
-          "Incus",
-          "Stapes",
-          "Oval Window"
+          "HPV",
+          "EBV",
+          "HBV",
+          "HTLV-1"
         ],
-        "explanation": "The three ossicles and the window they drive."
+        "explanation": "Viruses linked to human cancers."
       },
       {
-        "category": "Lysosomal Storage Diseases",
+        "category": "Staging / Severity Systems",
         "difficulty": 3,
         "terms": [
-          "Gaucher",
-          "Tay-Sachs",
-          "Niemann-Pick",
-          "Fabry"
+          "TNM",
+          "Ann Arbor",
+          "Breslow",
+          "Gleason"
         ],
-        "explanation": "Classic sphingolipidoses."
+        "explanation": "Cancer staging or grading tools."
       },
       {
-        "category": "ABG Report Values",
+        "category": "___ Cell Tumor Theme",
         "difficulty": 4,
         "terms": [
-          "pH",
-          "PaCO2",
-          "PaO2",
-          "HCO3"
+          "Reed-Sternberg",
+          "Signet Ring",
+          "Owl Eye",
+          "Orphan Annie"
         ],
-        "explanation": "Core arterial blood gas parameters."
+        "explanation": "Classic pathologic cell descriptors in oncology."
       }
     ]
   },
   {
-    "id": 35,
+    "id": 6,
     "groups": [
       {
-        "category": "Biologic Targets in Rheumatology",
+        "category": "Generalized Seizure Types",
         "difficulty": 1,
         "terms": [
-          "TNF-alpha",
-          "IL-6",
-          "CD20",
-          "JAK"
+          "Absence",
+          "Tonic-Clonic",
+          "Myoclonic",
+          "Atonic"
         ],
-        "explanation": "Molecular targets of common rheumatologic biologics/small molecules."
+        "explanation": "Generalized seizure semiologies."
       },
       {
-        "category": "Spinal Regions",
+        "category": "Pathologic Gaits",
         "difficulty": 2,
         "terms": [
-          "Cervical",
-          "Thoracic",
-          "Lumbar",
-          "Sacral"
+          "Antalgic",
+          "Trendelenburg",
+          "Steppage",
+          "Parkinsonian"
         ],
-        "explanation": "Regions of the vertebral column."
-      },
-      {
-        "category": "Inheritance Patterns",
-        "difficulty": 3,
-        "terms": [
-          "Autosomal Dominant",
-          "Autosomal Recessive",
-          "X-Linked Recessive",
-          "Mitochondrial"
-        ],
-        "explanation": "Classic Mendelian and maternal inheritance modes."
-      },
-      {
-        "category": "Pulse Oximeter Outputs",
-        "difficulty": 4,
-        "terms": [
-          "SpO2",
-          "Pulse Rate",
-          "Plethysmograph",
-          "Perfusion Index"
-        ],
-        "explanation": "Data commonly displayed by pulse oximetry."
-      }
-    ]
-  },
-  {
-    "id": 36,
-    "groups": [
-      {
-        "category": "Antiemetic Mechanisms",
-        "difficulty": 1,
-        "terms": [
-          "5-HT3 Blockade",
-          "D2 Blockade",
-          "H1 Blockade",
-          "NK1 Blockade"
-        ],
-        "explanation": "Receptor targets of major antiemetic classes."
-      },
-      {
-        "category": "Hormones From the Kidney",
-        "difficulty": 2,
-        "terms": [
-          "Erythropoietin",
-          "Renin",
-          "Calcitriol",
-          "Prostaglandins"
-        ],
-        "explanation": "Endocrine and paracrine products of renal tissue."
-      },
-      {
-        "category": "Dimorphic Fungi",
-        "difficulty": 3,
-        "terms": [
-          "Histoplasma",
-          "Blastomyces",
-          "Coccidioides",
-          "Paracoccidioides"
-        ],
-        "explanation": "Endemic fungi that switch forms with temperature."
+        "explanation": "Abnormal gait patterns."
       },
       {
         "category": "Named Reflexes",
-        "difficulty": 4,
+        "difficulty": 3,
         "terms": [
           "Babinski",
           "Moro",
-          "Cremasteric",
-          "Gag"
+          "Hoffman",
+          "Clonus"
         ],
-        "explanation": "Neurologic reflexes tested clinically."
+        "explanation": "Neurologic reflex findings."
+      },
+      {
+        "category": "___ Spot",
+        "difficulty": 4,
+        "terms": [
+          "Koplik",
+          "Roth",
+          "Brushfield",
+          "Cafe-au-Lait"
+        ],
+        "explanation": "Named spots with neurologic/systemic associations (measles, endocarditis emboli, Down syndrome, NF)."
       }
     ]
   },
   {
-    "id": 37,
+    "id": 7,
     "groups": [
       {
-        "category": "Anticholinergic Toxidrome Features",
+        "category": "Anterior Pituitary Hormones",
         "difficulty": 1,
         "terms": [
-          "Dry Mouth",
-          "Mydriasis",
-          "Urinary Retention",
-          "Delirium"
+          "ACTH",
+          "TSH",
+          "GH",
+          "Prolactin"
         ],
-        "explanation": "Classic findings of anticholinergic poisoning."
+        "explanation": "Adenohypophysis hormones."
       },
       {
-        "category": "Pregnancy Hormones",
+        "category": "Causes of Hypoglycemia",
         "difficulty": 2,
         "terms": [
-          "hCG",
-          "hPL",
-          "Progesterone",
-          "Estriol"
+          "Insulin Excess",
+          "Sulfonylurea",
+          "Ethanol",
+          "Addison Disease"
         ],
-        "explanation": "Key hormones of gestation."
+        "explanation": "Classic hypoglycemia precipitants."
+      },
+      {
+        "category": "Eponymous Endocrine Diseases",
+        "difficulty": 3,
+        "terms": [
+          "Addison",
+          "Cushing",
+          "Graves",
+          "Hashimoto"
+        ],
+        "explanation": "Named endocrine disorders."
+      },
+      {
+        "category": "___ Crisis",
+        "difficulty": 4,
+        "terms": [
+          "Thyroid",
+          "Addisonian",
+          "Hypercalcemic",
+          "Pheochromocytoma"
+        ],
+        "explanation": "Endocrine emergencies called crises."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "groups": [
+      {
+        "category": "Obstructive Lung Diseases",
+        "difficulty": 1,
+        "terms": [
+          "Asthma",
+          "COPD",
+          "Bronchiectasis",
+          "CF"
+        ],
+        "explanation": "Diseases with obstructive spirometry patterns."
+      },
+      {
+        "category": "Types of Pneumothorax",
+        "difficulty": 2,
+        "terms": [
+          "Primary Spontaneous",
+          "Secondary",
+          "Tension",
+          "Iatrogenic"
+        ],
+        "explanation": "Clinical pneumothorax categories."
+      },
+      {
+        "category": "___ Embolism",
+        "difficulty": 3,
+        "terms": [
+          "Pulmonary",
+          "Amniotic",
+          "Fat",
+          "Air"
+        ],
+        "explanation": "Embolism types that affect (or present via) the lungs/circulation."
+      },
+      {
+        "category": "Breath Sound Descriptors",
+        "difficulty": 4,
+        "terms": [
+          "Wheeze",
+          "Rhonchi",
+          "Crackles",
+          "Stridor"
+        ],
+        "explanation": "Adventitious lung sounds."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "groups": [
+      {
+        "category": "Causes of Pancreatitis",
+        "difficulty": 1,
+        "terms": [
+          "Gallstones",
+          "Alcohol",
+          "Triglycerides",
+          "ERCP"
+        ],
+        "explanation": "Common pancreatitis triggers."
+      },
+      {
+        "category": "Upper GI Bleed Sources",
+        "difficulty": 2,
+        "terms": [
+          "Peptic Ulcer",
+          "Varices",
+          "Mallory-Weiss",
+          "Dieulafoy"
+        ],
+        "explanation": "Classic UGI bleeding lesions."
+      },
+      {
+        "category": "Inflammatory Bowel Disease Features",
+        "difficulty": 3,
+        "terms": [
+          "Skip Lesions",
+          "Transmural",
+          "Crypt Abscesses",
+          "Cobblestoning"
+        ],
+        "explanation": "Path findings associated with Crohn/UC teaching contrasts."
+      },
+      {
+        "category": "___ Sign (Abdomen)",
+        "difficulty": 4,
+        "terms": [
+          "Murphy",
+          "McBurney",
+          "Cullen",
+          "Grey Turner"
+        ],
+        "explanation": "Abdominal exam eponyms."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "groups": [
+      {
+        "category": "Causes of High Anion Gap Acidosis",
+        "difficulty": 1,
+        "terms": [
+          "Lactate",
+          "Ketoacids",
+          "Toxins",
+          "Uremia"
+        ],
+        "explanation": "Major gap acidosis contributors."
+      },
+      {
+        "category": "Diuretic Classes",
+        "difficulty": 2,
+        "terms": [
+          "Loop",
+          "Thiazide",
+          "Carbonic Anhydrase Inhibitor",
+          "Osmotic"
+        ],
+        "explanation": "Diuretics by mechanism/site."
+      },
+      {
+        "category": "Nephritic Syndrome Features",
+        "difficulty": 3,
+        "terms": [
+          "Hematuria",
+          "Oliguria",
+          "Hypertension",
+          "RBC Casts"
+        ],
+        "explanation": "Hallmarks of acute nephritic presentation."
+      },
+      {
+        "category": "Things Measured in mEq/L",
+        "difficulty": 4,
+        "terms": [
+          "Sodium",
+          "Potassium",
+          "Chloride",
+          "Bicarbonate"
+        ],
+        "explanation": "Electrolytes commonly reported in mEq/L."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "groups": [
+      {
+        "category": "Coagulation Pathways",
+        "difficulty": 1,
+        "terms": [
+          "Intrinsic",
+          "Extrinsic",
+          "Common",
+          "Fibrinolysis"
+        ],
+        "explanation": "Classic cascade teaching arms."
+      },
+      {
+        "category": "Microcytic Anemias",
+        "difficulty": 2,
+        "terms": [
+          "Iron Deficiency",
+          "Thalassemia",
+          "Anemia of Chronic Disease",
+          "Sideroblastic"
+        ],
+        "explanation": "Common microcytic anemia causes."
       },
       {
         "category": "Leukemia Categories",
@@ -1804,132 +529,279 @@
           "CLL",
           "CML"
         ],
-        "explanation": "The four classic leukemia groupings."
+        "explanation": "The four classic leukemias."
       },
       {
-        "category": "___ Crisis",
+        "category": "___ Cell",
         "difficulty": 4,
         "terms": [
-          "Myasthenic",
-          "Addisonian",
-          "Thyroid",
-          "Sickle Cell"
+          "Reed-Sternberg",
+          "Plasma",
+          "Sickle",
+          "Target"
         ],
-        "explanation": "Medical emergencies named as crises."
+        "explanation": "Named cell morphologies on smear/path."
       }
     ]
   },
   {
-    "id": 38,
+    "id": 12,
     "groups": [
       {
-        "category": "Malaria Life-Cycle Drug Targets",
+        "category": "Gram-Positive Cocci",
         "difficulty": 1,
         "terms": [
-          "Blood Schizonts",
-          "Liver Hypnozoites",
-          "Gametocytes",
-          "Heme Polymerase"
+          "Staphylococcus",
+          "Streptococcus",
+          "Enterococcus",
+          "Peptostreptococcus"
         ],
-        "explanation": "Stages/enzymes targeted by antimalarial therapy."
+        "explanation": "Gram-positive coccal genera."
       },
       {
-        "category": "Carpal Tunnel Traversing Structures",
+        "category": "Tick-Borne Infections",
         "difficulty": 2,
         "terms": [
-          "Median Nerve",
-          "FDS",
-          "FDP",
-          "FPL"
+          "Lyme",
+          "Anaplasmosis",
+          "Babesiosis",
+          "RMSF"
         ],
-        "explanation": "Contents of the carpal tunnel."
+        "explanation": "North American tick-transmitted diseases."
       },
       {
-        "category": "Hypersensitivity Pneumonitis Names",
+        "category": "Acid-Fast Organisms",
         "difficulty": 3,
         "terms": [
-          "Farmer's Lung",
-          "Bird Fancier's",
-          "Humidifier Lung",
-          "Cheese Worker's"
+          "M. tuberculosis",
+          "M. leprae",
+          "Nocardia",
+          "Cryptosporidium"
         ],
-        "explanation": "Occupational HP syndromes."
+        "explanation": "Organisms that stain acid-fast (modified for some)."
       },
       {
-        "category": "Graded 0 to 4+",
+        "category": "___ Fever",
         "difficulty": 4,
         "terms": [
-          "Reflexes",
-          "Edema",
-          "Tonsils",
-          "Pulses"
+          "Rheumatic",
+          "Yellow",
+          "Q",
+          "Scarlet"
         ],
-        "explanation": "Bedside findings commonly scored 0–4+."
+        "explanation": "Named febrile illnesses."
       }
     ]
   },
   {
-    "id": 39,
+    "id": 13,
     "groups": [
       {
-        "category": "Causes of Methemoglobinemia",
+        "category": "Cell Wall Active Antibiotics",
         "difficulty": 1,
         "terms": [
-          "Benzocaine",
-          "Dapsone",
-          "Nitrites",
-          "Aniline Dyes"
+          "Penicillin G",
+          "Vancomycin",
+          "Ceftriaxone",
+          "Aztreonam"
         ],
-        "explanation": "Classic acquired causes of methemoglobinemia."
+        "explanation": "Agents that disrupt bacterial cell wall synthesis."
       },
       {
-        "category": "Thalamic Sensory Relays",
+        "category": "Protein Synthesis Inhibitors",
         "difficulty": 2,
         "terms": [
-          "VPL",
-          "VPM",
-          "LGN",
-          "MGN"
+          "Azithromycin",
+          "Doxycycline",
+          "Gentamicin",
+          "Linezolid"
         ],
-        "explanation": "Major thalamic nuclei for body, face, vision, and hearing."
+        "explanation": "Ribosome-targeting antibiotics from different classes."
       },
       {
-        "category": "Oncogenic Viruses",
+        "category": "Antifungal Drug Classes",
         "difficulty": 3,
         "terms": [
-          "HPV",
-          "EBV",
-          "HBV",
-          "HTLV-1"
+          "Amphotericin B",
+          "Fluconazole",
+          "Caspofungin",
+          "Terbinafine"
         ],
-        "explanation": "Viruses causally linked to human cancers."
+        "explanation": "Polyene, azole, echinocandin, and allylamine examples."
       },
       {
-        "category": "Scope Exams",
+        "category": "Antivirals by Target",
         "difficulty": 4,
         "terms": [
-          "Laryngoscopy",
-          "Otoscopy",
-          "Ophthalmoscopy",
-          "Colonoscopy"
+          "Acyclovir",
+          "Oseltamivir",
+          "Remdesivir",
+          "Zidovudine"
         ],
-        "explanation": "Procedures performed with a scope."
+        "explanation": "Agents used against herpesviruses, influenza, RNA viruses, and HIV."
       }
     ]
   },
   {
-    "id": 40,
+    "id": 14,
     "groups": [
       {
-        "category": "Calcineurin Inhibitors",
+        "category": "Vasopressors",
         "difficulty": 1,
         "terms": [
-          "Tacrolimus",
-          "Cyclosporine",
-          "Pimecrolimus",
-          "Voclosporin"
+          "Norepinephrine",
+          "Epinephrine",
+          "Vasopressin",
+          "Phenylephrine"
         ],
-        "explanation": "Immunosuppressants blocking calcineurin–NFAT signaling."
+        "explanation": "Common pressors used in shock."
+      },
+      {
+        "category": "Pulseless Arrest Rhythms",
+        "difficulty": 2,
+        "terms": [
+          "VF",
+          "pVT",
+          "Asystole",
+          "PEA"
+        ],
+        "explanation": "Rhythms in adult cardiac arrest algorithms."
+      },
+      {
+        "category": "Early Sepsis Actions",
+        "difficulty": 3,
+        "terms": [
+          "Blood Cultures",
+          "Lactate",
+          "Broad Antibiotics",
+          "IV Fluids"
+        ],
+        "explanation": "Core early sepsis interventions."
+      },
+      {
+        "category": "Pressures Tracked in the ICU",
+        "difficulty": 4,
+        "terms": [
+          "MAP",
+          "CVP",
+          "ICP",
+          "CPP"
+        ],
+        "explanation": "MAP, central venous, intracranial, and cerebral perfusion pressures."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "groups": [
+      {
+        "category": "Pregnancy Hormones",
+        "difficulty": 1,
+        "terms": [
+          "hCG",
+          "hPL",
+          "Progesterone",
+          "Estriol"
+        ],
+        "explanation": "Key gestational hormones."
+      },
+      {
+        "category": "Hypertensive Disorders of Pregnancy",
+        "difficulty": 2,
+        "terms": [
+          "Gestational HTN",
+          "Preeclampsia",
+          "Eclampsia",
+          "HELLP"
+        ],
+        "explanation": "Spectrum of pregnancy-related hypertension."
+      },
+      {
+        "category": "Fetal Circulatory Shunts",
+        "difficulty": 3,
+        "terms": [
+          "Ductus Arteriosus",
+          "Foramen Ovale",
+          "Ductus Venosus",
+          "Umbilical Vein"
+        ],
+        "explanation": "Major fetal blood-flow pathways."
+      },
+      {
+        "category": "___ Pregnancy",
+        "difficulty": 4,
+        "terms": [
+          "Ectopic",
+          "Molar",
+          "Heterotopic",
+          "Chemical"
+        ],
+        "explanation": "Special pregnancy classifications."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "groups": [
+      {
+        "category": "AV Nodal Rate-Control Agents",
+        "difficulty": 1,
+        "terms": [
+          "Metoprolol",
+          "Diltiazem",
+          "Digoxin",
+          "Esmolol"
+        ],
+        "explanation": "Agents used to slow ventricular response in AF."
+      },
+      {
+        "category": "Vaughan Williams Class Examples",
+        "difficulty": 2,
+        "terms": [
+          "Flecainide",
+          "Propranolol",
+          "Amiodarone",
+          "Verapamil"
+        ],
+        "explanation": "Representatives of antiarrhythmic classes I–IV."
+      },
+      {
+        "category": "Action Potential Phases",
+        "difficulty": 3,
+        "terms": [
+          "Phase 0",
+          "Phase 1",
+          "Phase 2",
+          "Phase 3"
+        ],
+        "explanation": "Ventricular myocyte action-potential phases."
+      },
+      {
+        "category": "Ways to Record the QRS",
+        "difficulty": 4,
+        "terms": [
+          "12-Lead ECG",
+          "Telemetry",
+          "Holter",
+          "Event Monitor"
+        ],
+        "explanation": "Modalities that capture ventricular depolarization."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "groups": [
+      {
+        "category": "Muscles of Mastication",
+        "difficulty": 1,
+        "terms": [
+          "Masseter",
+          "Temporalis",
+          "Medial Pterygoid",
+          "Lateral Pterygoid"
+        ],
+        "explanation": "Muscles that move the mandible."
       },
       {
         "category": "Paranasal Sinuses",
@@ -1943,46 +815,476 @@
         "explanation": "The four paired paranasal sinuses."
       },
       {
-        "category": "Pathologic Gaits",
+        "category": "Salivary Glands",
         "difficulty": 3,
         "terms": [
-          "Antalgic",
-          "Trendelenburg",
-          "Steppage",
-          "Parkinsonian"
+          "Parotid",
+          "Submandibular",
+          "Sublingual",
+          "Von Ebner"
         ],
-        "explanation": "Classic abnormal gait patterns."
+        "explanation": "Named salivary glands."
       },
       {
-        "category": "Can Be Called Atypical",
+        "category": "Carotid Sheath Region",
         "difficulty": 4,
         "terms": [
-          "Pneumonia",
-          "Depression",
-          "Antipsychotics",
-          "Nevi"
+          "Common Carotid",
+          "Internal Jugular",
+          "Vagus",
+          "Ansa Cervicalis"
         ],
-        "explanation": "Medical terms frequently modified by “atypical.”"
+        "explanation": "Structures in or near the carotid sheath."
       }
     ]
   },
   {
-    "id": 41,
+    "id": 18,
     "groups": [
       {
-        "category": "Cold Medicine Mechanisms",
+        "category": "Trigeminal Divisions",
         "difficulty": 1,
         "terms": [
-          "NMDA Antagonism",
-          "Expectoration",
-          "Alpha Agonism",
-          "Antihistamine"
+          "Ophthalmic",
+          "Maxillary",
+          "Mandibular",
+          "Semilunar Ganglion"
         ],
-        "explanation": "Mechanisms behind common OTC cold remedies (DXM, guaifenesin, decongestants, antihistamines)."
+        "explanation": "V1–V3 and the trigeminal (semilunar) ganglion."
       },
       {
-        "category": "Male Urethra Segments",
+        "category": "Purely Motor Cranial Nerves",
         "difficulty": 2,
+        "terms": [
+          "Trochlear",
+          "Abducens",
+          "Accessory",
+          "Hypoglossal"
+        ],
+        "explanation": "CN IV, VI, XI, and XII."
+      },
+      {
+        "category": "Parasympathetic Cranial Nerves",
+        "difficulty": 3,
+        "terms": [
+          "Oculomotor",
+          "Facial",
+          "Glossopharyngeal",
+          "Vagus"
+        ],
+        "explanation": "CN III, VII, IX, and X carry parasympathetic fibers."
+      },
+      {
+        "category": "Skull Base Exit Sites",
+        "difficulty": 4,
+        "terms": [
+          "Cribriform Plate",
+          "Optic Canal",
+          "Internal Acoustic Meatus",
+          "Jugular Foramen"
+        ],
+        "explanation": "Exits for CN I, II, VII/VIII, and IX–XI."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "groups": [
+      {
+        "category": "Raised Primary Lesions",
+        "difficulty": 1,
+        "terms": [
+          "Papule",
+          "Plaque",
+          "Nodule",
+          "Wheal"
+        ],
+        "explanation": "Elevated primary lesion morphologies."
+      },
+      {
+        "category": "Epidermal Strata",
+        "difficulty": 2,
+        "terms": [
+          "Corneum",
+          "Lucidum",
+          "Granulosum",
+          "Spinosum"
+        ],
+        "explanation": "Named layers of the epidermis."
+      },
+      {
+        "category": "Blistering Diseases",
+        "difficulty": 3,
+        "terms": [
+          "Pemphigus Vulgaris",
+          "Bullous Pemphigoid",
+          "Dermatitis Herpetiformis",
+          "SJS"
+        ],
+        "explanation": "Important bullous dermatoses."
+      },
+      {
+        "category": "Named Skin Phenomena",
+        "difficulty": 4,
+        "terms": [
+          "Koebner",
+          "Auspitz",
+          "Nikolsky",
+          "Darier"
+        ],
+        "explanation": "Classic dermatologic signs/phenomena."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "groups": [
+      {
+        "category": "Refractive Errors",
+        "difficulty": 1,
+        "terms": [
+          "Myopia",
+          "Hyperopia",
+          "Astigmatism",
+          "Presbyopia"
+        ],
+        "explanation": "Common disorders of ocular focusing."
+      },
+      {
+        "category": "Extraocular Muscles",
+        "difficulty": 2,
+        "terms": [
+          "Medial Rectus",
+          "Lateral Rectus",
+          "Superior Oblique",
+          "Inferior Oblique"
+        ],
+        "explanation": "Four of the six extraocular muscles."
+      },
+      {
+        "category": "Causes of Acute Red Eye",
+        "difficulty": 3,
+        "terms": [
+          "Conjunctivitis",
+          "Anterior Uveitis",
+          "Angle-Closure Glaucoma",
+          "Corneal Abrasion"
+        ],
+        "explanation": "Important red-eye differentials."
+      },
+      {
+        "category": "Pupil Exam Findings",
+        "difficulty": 4,
+        "terms": [
+          "Miosis",
+          "Mydriasis",
+          "Anisocoria",
+          "RAPD"
+        ],
+        "explanation": "Terms from pupillary examination."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "groups": [
+      {
+        "category": "Positive Psychotic Symptoms",
+        "difficulty": 1,
+        "terms": [
+          "Hallucinations",
+          "Delusions",
+          "Disorganized Speech",
+          "Disorganized Behavior"
+        ],
+        "explanation": "Core positive psychotic features."
+      },
+      {
+        "category": "Mood Stabilizers",
+        "difficulty": 2,
+        "terms": [
+          "Lithium",
+          "Valproate",
+          "Lamotrigine",
+          "Carbamazepine"
+        ],
+        "explanation": "Agents used for bipolar spectrum illness."
+      },
+      {
+        "category": "Extrapyramidal Effects",
+        "difficulty": 3,
+        "terms": [
+          "Acute Dystonia",
+          "Akathisia",
+          "Parkinsonism",
+          "Tardive Dyskinesia"
+        ],
+        "explanation": "EPS from dopamine D2 blockade."
+      },
+      {
+        "category": "___ Disorder",
+        "difficulty": 4,
+        "terms": [
+          "Bipolar",
+          "Panic",
+          "Body Dysmorphic",
+          "Conversion"
+        ],
+        "explanation": "Psychiatric diagnoses commonly ending in “disorder.”"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "groups": [
+      {
+        "category": "Cyanotic Congenital Heart Disease",
+        "difficulty": 1,
+        "terms": [
+          "Tetralogy of Fallot",
+          "TGA",
+          "Truncus Arteriosus",
+          "Tricuspid Atresia"
+        ],
+        "explanation": "Classic cyanotic CHD lesions."
+      },
+      {
+        "category": "Developmental Domains",
+        "difficulty": 2,
+        "terms": [
+          "Gross Motor",
+          "Fine Motor",
+          "Language",
+          "Social-Emotional"
+        ],
+        "explanation": "Domains used when tracking milestones."
+      },
+      {
+        "category": "Classic Childhood Exanthems",
+        "difficulty": 3,
+        "terms": [
+          "Measles",
+          "Roseola",
+          "Fifth Disease",
+          "Scarlet Fever"
+        ],
+        "explanation": "Named pediatric viral/bacterial rashes."
+      },
+      {
+        "category": "Pediatric Small Round Blue Cell Tumors",
+        "difficulty": 4,
+        "terms": [
+          "Neuroblastoma",
+          "Wilms Tumor",
+          "Ewing Sarcoma",
+          "Medulloblastoma"
+        ],
+        "explanation": "Tumors in the pediatric SRBCT differential."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "groups": [
+      {
+        "category": "ATLS Primary Survey",
+        "difficulty": 1,
+        "terms": [
+          "Airway",
+          "Breathing",
+          "Circulation",
+          "Disability"
+        ],
+        "explanation": "First four steps of ABCDE."
+      },
+      {
+        "category": "GCS Components",
+        "difficulty": 2,
+        "terms": [
+          "Eye Opening",
+          "Verbal Response",
+          "Motor Response",
+          "Best Score"
+        ],
+        "explanation": "Domains of the Glasgow Coma Scale."
+      },
+      {
+        "category": "Classes of Hemorrhagic Shock",
+        "difficulty": 3,
+        "terms": [
+          "Class I",
+          "Class II",
+          "Class III",
+          "Class IV"
+        ],
+        "explanation": "ATLS hemorrhage severity classes."
+      },
+      {
+        "category": "Disaster Triage Tags",
+        "difficulty": 4,
+        "terms": [
+          "Red",
+          "Yellow",
+          "Green",
+          "Black"
+        ],
+        "explanation": "Standard disaster triage colors."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "groups": [
+      {
+        "category": "Hypersensitivity Prototypes",
+        "difficulty": 1,
+        "terms": [
+          "Anaphylaxis",
+          "Goodpasture",
+          "Serum Sickness",
+          "PPD Reaction"
+        ],
+        "explanation": "Classic examples of Types I–IV hypersensitivity."
+      },
+      {
+        "category": "Connective Tissue Diseases",
+        "difficulty": 2,
+        "terms": [
+          "Rheumatoid Arthritis",
+          "SLE",
+          "Sjogren",
+          "Systemic Sclerosis"
+        ],
+        "explanation": "Major autoimmune CTDs."
+      },
+      {
+        "category": "Crystal Arthropathies",
+        "difficulty": 3,
+        "terms": [
+          "Gout",
+          "CPPD",
+          "Hydroxyapatite",
+          "Calcium Oxalate"
+        ],
+        "explanation": "Crystal-induced joint diseases."
+      },
+      {
+        "category": "Biologic / Small-Molecule Targets",
+        "difficulty": 4,
+        "terms": [
+          "TNF-alpha",
+          "IL-6",
+          "CD20",
+          "JAK"
+        ],
+        "explanation": "Molecular targets in modern rheumatology therapy."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "groups": [
+      {
+        "category": "Fat-Soluble Vitamins",
+        "difficulty": 1,
+        "terms": [
+          "Retinol",
+          "Cholecalciferol",
+          "Tocopherol",
+          "Phylloquinone"
+        ],
+        "explanation": "Vitamins A, D, E, and K."
+      },
+      {
+        "category": "B-Vitamin Deficiency States",
+        "difficulty": 2,
+        "terms": [
+          "Beriberi",
+          "Pellagra",
+          "Wernicke Encephalopathy",
+          "Pernicious Anemia"
+        ],
+        "explanation": "Syndromes of B1, B3, and B12 deficiency."
+      },
+      {
+        "category": "Essential Trace Elements",
+        "difficulty": 3,
+        "terms": [
+          "Zinc",
+          "Copper",
+          "Selenium",
+          "Chromium"
+        ],
+        "explanation": "Trace minerals required in human nutrition."
+      },
+      {
+        "category": "Nutrition-Related Labs",
+        "difficulty": 4,
+        "terms": [
+          "Prealbumin",
+          "Transferrin",
+          "25-OH Vitamin D",
+          "RBC Folate"
+        ],
+        "explanation": "Labs used when assessing nutritional status."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "groups": [
+      {
+        "category": "Inheritance Patterns",
+        "difficulty": 1,
+        "terms": [
+          "Autosomal Dominant",
+          "Autosomal Recessive",
+          "X-Linked",
+          "Mitochondrial"
+        ],
+        "explanation": "Classic modes of inheritance."
+      },
+      {
+        "category": "Trinucleotide Repeat Disorders",
+        "difficulty": 2,
+        "terms": [
+          "Huntington",
+          "Fragile X",
+          "Myotonic Dystrophy",
+          "Friedreich Ataxia"
+        ],
+        "explanation": "Diseases from expanding nucleotide repeats."
+      },
+      {
+        "category": "Aneuploidy Syndromes",
+        "difficulty": 3,
+        "terms": [
+          "Down",
+          "Edwards",
+          "Patau",
+          "Turner"
+        ],
+        "explanation": "Trisomy 21/18/13 and monosomy X."
+      },
+      {
+        "category": "Connective Tissue Genetic Syndromes",
+        "difficulty": 4,
+        "terms": [
+          "Marfan",
+          "Ehlers-Danlos",
+          "Osteogenesis Imperfecta",
+          "Loeys-Dietz"
+        ],
+        "explanation": "Inherited disorders of connective tissue."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "groups": [
+      {
+        "category": "Male Urethral Segments",
+        "difficulty": 1,
         "terms": [
           "Prostatic",
           "Membranous",
@@ -1992,26 +1294,723 @@
         "explanation": "Anatomic segments of the male urethra."
       },
       {
-        "category": "Intestinal Nematodes",
-        "difficulty": 3,
+        "category": "Incontinence Types",
+        "difficulty": 2,
         "terms": [
-          "Ascaris",
-          "Enterobius",
-          "Strongyloides",
-          "Necator"
+          "Stress",
+          "Urge",
+          "Overflow",
+          "Functional"
         ],
-        "explanation": "Clinically important roundworms."
+        "explanation": "Major categories of urinary incontinence."
       },
       {
-        "category": "___ Procedure",
+        "category": "Kidney Stone Compositions",
+        "difficulty": 3,
+        "terms": [
+          "Calcium Oxalate",
+          "Struvite",
+          "Uric Acid",
+          "Cystine"
+        ],
+        "explanation": "Common stone types."
+      },
+      {
+        "category": "Acute Scrotum Causes",
         "difficulty": 4,
         "terms": [
+          "Spermatic Cord Torsion",
+          "Epididymitis",
+          "Torsion of Appendix Testis",
+          "Orchitis"
+        ],
+        "explanation": "Key diagnoses in the acute scrotum."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "groups": [
+      {
+        "category": "Primary Acid-Base Disorders",
+        "difficulty": 1,
+        "terms": [
+          "Metabolic Acidosis",
+          "Metabolic Alkalosis",
+          "Respiratory Acidosis",
+          "Respiratory Alkalosis"
+        ],
+        "explanation": "The four primary acid-base disturbances."
+      },
+      {
+        "category": "Causes of Metabolic Alkalosis",
+        "difficulty": 2,
+        "terms": [
+          "Vomiting",
+          "Loop Diuretics",
+          "Hyperaldosteronism",
+          "Milk-Alkali Syndrome"
+        ],
+        "explanation": "Classic generators of metabolic alkalosis."
+      },
+      {
+        "category": "ABG Values",
+        "difficulty": 3,
+        "terms": [
+          "pH",
+          "PaCO2",
+          "PaO2",
+          "HCO3"
+        ],
+        "explanation": "Core arterial blood gas parameters."
+      },
+      {
+        "category": "Physiologic Compensations",
+        "difficulty": 4,
+        "terms": [
+          "Hyperventilation",
+          "Hypoventilation",
+          "Increased Renal H+ Excretion",
+          "HCO3 Retention"
+        ],
+        "explanation": "Respiratory and renal compensations."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "groups": [
+      {
+        "category": "Classic Antidotes",
+        "difficulty": 1,
+        "terms": [
+          "Naloxone",
+          "N-Acetylcysteine",
+          "Fomepizole",
+          "Flumazenil"
+        ],
+        "explanation": "Antidotes for opioids, acetaminophen, toxic alcohols, and benzodiazepines."
+      },
+      {
+        "category": "Toxidromes",
+        "difficulty": 2,
+        "terms": [
+          "Anticholinergic",
+          "Cholinergic",
+          "Sympathomimetic",
+          "Sedative-Hypnotic"
+        ],
+        "explanation": "Major clinical toxidrome patterns."
+      },
+      {
+        "category": "Heavy Metal Poisonings",
+        "difficulty": 3,
+        "terms": [
+          "Lead",
+          "Mercury",
+          "Arsenic",
+          "Iron"
+        ],
+        "explanation": "Classic toxic metals."
+      },
+      {
+        "category": "Chelating Agents",
+        "difficulty": 4,
+        "terms": [
+          "Deferoxamine",
+          "CaNa2-EDTA",
+          "Dimercaprol",
+          "Succimer"
+        ],
+        "explanation": "Chelators used for metal toxicity."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "groups": [
+      {
+        "category": "Herpesviruses",
+        "difficulty": 1,
+        "terms": [
+          "HSV-1",
+          "VZV",
+          "EBV",
+          "CMV"
+        ],
+        "explanation": "Major human herpesviruses."
+      },
+      {
+        "category": "Hepatitis Viruses",
+        "difficulty": 2,
+        "terms": [
+          "HAV",
+          "HBV",
+          "HCV",
+          "HEV"
+        ],
+        "explanation": "Common hepatotropic viruses."
+      },
+      {
+        "category": "Respiratory Viruses",
+        "difficulty": 3,
+        "terms": [
+          "Influenza A",
+          "RSV",
+          "Rhinovirus",
+          "Human Metapneumovirus"
+        ],
+        "explanation": "Common viral respiratory pathogens."
+      },
+      {
+        "category": "Human Retroviruses",
+        "difficulty": 4,
+        "terms": [
+          "HIV-1",
+          "HIV-2",
+          "HTLV-1",
+          "HTLV-2"
+        ],
+        "explanation": "Retroviruses that infect humans."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "groups": [
+      {
+        "category": "Eponymous Operations",
+        "difficulty": 1,
+        "terms": [
           "Whipple",
-          "Billroth",
+          "Billroth I",
           "Hartmann",
           "Nissen"
         ],
-        "explanation": "Eponymous GI operations."
+        "explanation": "Named general and GI surgical procedures."
+      },
+      {
+        "category": "Wound Healing Phases",
+        "difficulty": 2,
+        "terms": [
+          "Hemostasis",
+          "Inflammation",
+          "Proliferation",
+          "Remodeling"
+        ],
+        "explanation": "Sequential phases of wound healing."
+      },
+      {
+        "category": "SSI Risk Factors",
+        "difficulty": 3,
+        "terms": [
+          "Diabetes",
+          "Obesity",
+          "Smoking",
+          "Immunosuppression"
+        ],
+        "explanation": "Patient factors that raise surgical site infection risk."
+      },
+      {
+        "category": "Named Surgical Triangles",
+        "difficulty": 4,
+        "terms": [
+          "Calot",
+          "Femoral",
+          "Hasselbach",
+          "Scarpa"
+        ],
+        "explanation": "Anatomic triangles used in surgical landmarks."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "groups": [
+      {
+        "category": "Density Descriptors on X-Ray",
+        "difficulty": 1,
+        "terms": [
+          "Radiopaque",
+          "Radiolucent",
+          "Soft Tissue",
+          "Air"
+        ],
+        "explanation": "Basic radiographic density language."
+      },
+      {
+        "category": "Chest Radiograph Views",
+        "difficulty": 2,
+        "terms": [
+          "PA",
+          "AP",
+          "Lateral",
+          "Lateral Decubitus"
+        ],
+        "explanation": "Common chest x-ray projections."
+      },
+      {
+        "category": "Contrast Reaction Severity",
+        "difficulty": 3,
+        "terms": [
+          "Urticaria",
+          "Bronchospasm",
+          "Hypotension",
+          "Cardiopulmonary Arrest"
+        ],
+        "explanation": "Spectrum of iodinated contrast reactions."
+      },
+      {
+        "category": "MRI Sequence Nicknames",
+        "difficulty": 4,
+        "terms": [
+          "T1",
+          "T2",
+          "FLAIR",
+          "DWI"
+        ],
+        "explanation": "Common MRI sequence acronyms."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "groups": [
+      {
+        "category": "Drugs That Prolong QT",
+        "difficulty": 1,
+        "terms": [
+          "Sotalol",
+          "Amiodarone",
+          "Quinidine",
+          "Dofetilide"
+        ],
+        "explanation": "Antiarrhythmics with notable QT prolongation."
+      },
+      {
+        "category": "Afterload Reducers in Heart Failure",
+        "difficulty": 2,
+        "terms": [
+          "Lisinopril",
+          "Losartan",
+          "Sacubitril-Valsartan",
+          "Hydralazine"
+        ],
+        "explanation": "Agents that reduce afterload / modulate RAAS in HF."
+      },
+      {
+        "category": "Antiplatelet Agents",
+        "difficulty": 3,
+        "terms": [
+          "Aspirin",
+          "Clopidogrel",
+          "Ticagrelor",
+          "Prasugrel"
+        ],
+        "explanation": "Common dual-antiplatelet therapy options."
+      },
+      {
+        "category": "Things You Titrate to Effect",
+        "difficulty": 4,
+        "terms": [
+          "Nitroprusside",
+          "Dobutamine",
+          "Nicardipine",
+          "Norepinephrine"
+        ],
+        "explanation": "IV cardioactive drips commonly titrated to clinical targets."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "groups": [
+      {
+        "category": "Nephritic Features",
+        "difficulty": 1,
+        "terms": [
+          "Hematuria",
+          "RBC Casts",
+          "Hypertension",
+          "Oliguria"
+        ],
+        "explanation": "Hallmarks of nephritic presentations."
+      },
+      {
+        "category": "Nephrotic Features",
+        "difficulty": 2,
+        "terms": [
+          "Heavy Proteinuria",
+          "Hypoalbuminemia",
+          "Edema",
+          "Hyperlipidemia"
+        ],
+        "explanation": "Classic nephrotic syndrome tetrad."
+      },
+      {
+        "category": "Glomerular Filtration Barrier",
+        "difficulty": 3,
+        "terms": [
+          "Fenestrated Endothelium",
+          "GBM",
+          "Podocyte Foot Processes",
+          "Slit Diaphragm"
+        ],
+        "explanation": "Layers of the glomerular filter."
+      },
+      {
+        "category": "Renal Tubular Acidosis Types",
+        "difficulty": 4,
+        "terms": [
+          "Type 1 (Distal)",
+          "Type 2 (Proximal)",
+          "Type 4",
+          "Voltage-Dependent"
+        ],
+        "explanation": "Recognized RTA classifications."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "groups": [
+      {
+        "category": "Insulins by Kinetics",
+        "difficulty": 1,
+        "terms": [
+          "Lispro",
+          "Regular",
+          "NPH",
+          "Glargine"
+        ],
+        "explanation": "Rapid, short, intermediate, and long-acting insulins."
+      },
+      {
+        "category": "Thyroid Medications",
+        "difficulty": 2,
+        "terms": [
+          "Levothyroxine",
+          "Liothyronine",
+          "Methimazole",
+          "Propylthiouracil"
+        ],
+        "explanation": "Replacement and antithyroid drugs."
+      },
+      {
+        "category": "Drugs Causing Gynecomastia",
+        "difficulty": 3,
+        "terms": [
+          "Spironolactone",
+          "Ketoconazole",
+          "Cimetidine",
+          "Digoxin"
+        ],
+        "explanation": "Medications classically linked to gynecomastia."
+      },
+      {
+        "category": "Causes of Drug-Induced Lupus",
+        "difficulty": 4,
+        "terms": [
+          "Hydralazine",
+          "Procainamide",
+          "Isoniazid",
+          "Minocycline"
+        ],
+        "explanation": "Classic culprits of drug-induced lupus."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "groups": [
+      {
+        "category": "ARDS Diagnostic Elements",
+        "difficulty": 1,
+        "terms": [
+          "Acute Onset",
+          "Bilateral Opacities",
+          "Not Fully Explained by Heart Failure",
+          "Hypoxemia"
+        ],
+        "explanation": "Berlin definition themes for ARDS."
+      },
+      {
+        "category": "Ventilator Modes",
+        "difficulty": 2,
+        "terms": [
+          "AC/VC",
+          "PSV",
+          "SIMV",
+          "CPAP"
+        ],
+        "explanation": "Common mechanical ventilation modes."
+      },
+      {
+        "category": "Causes of Hypoxemic Respiratory Failure",
+        "difficulty": 3,
+        "terms": [
+          "V/Q Mismatch",
+          "Shunt",
+          "Diffusion Limitation",
+          "Low Inspired O2"
+        ],
+        "explanation": "Physiologic mechanisms of hypoxemia."
+      },
+      {
+        "category": "Oxygen Delivery Devices",
+        "difficulty": 4,
+        "terms": [
+          "Nasal Cannula",
+          "Simple Mask",
+          "Non-Rebreather",
+          "High-Flow Nasal Cannula"
+        ],
+        "explanation": "Devices used to deliver supplemental oxygen."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "groups": [
+      {
+        "category": "Plasma Cell Disorders",
+        "difficulty": 1,
+        "terms": [
+          "Multiple Myeloma",
+          "Waldenstrom",
+          "MGUS",
+          "Amyloidosis AL"
+        ],
+        "explanation": "Disorders of clonal plasma cells / related proteins."
+      },
+      {
+        "category": "Transfusion Reactions",
+        "difficulty": 2,
+        "terms": [
+          "Acute Hemolytic",
+          "Febrile Non-Hemolytic",
+          "TRALI",
+          "TACO"
+        ],
+        "explanation": "Important acute transfusion complications."
+      },
+      {
+        "category": "Coagulation Factor Deficiencies",
+        "difficulty": 3,
+        "terms": [
+          "Factor VIII",
+          "Factor IX",
+          "Factor XI",
+          "Factor VII"
+        ],
+        "explanation": "Factors linked to hemophilia A/B/C and rare VII deficiency."
+      },
+      {
+        "category": "Peripheral Smear Findings",
+        "difficulty": 4,
+        "terms": [
+          "Schistocytes",
+          "Sickle Cells",
+          "Target Cells",
+          "Howell-Jolly Bodies"
+        ],
+        "explanation": "Classic RBC morphologies on smear."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "groups": [
+      {
+        "category": "Causes of Postpartum Hemorrhage",
+        "difficulty": 1,
+        "terms": [
+          "Tone",
+          "Trauma",
+          "Tissue",
+          "Thrombin"
+        ],
+        "explanation": "The “4 T’s” of PPH."
+      },
+      {
+        "category": "Uterotonic Agents",
+        "difficulty": 2,
+        "terms": [
+          "Oxytocin",
+          "Methylergonovine",
+          "Carboprost",
+          "Misoprostol"
+        ],
+        "explanation": "Medications used to contract the uterus."
+      },
+      {
+        "category": "Shoulder Dystocia Maneuvers",
+        "difficulty": 3,
+        "terms": [
+          "McRoberts",
+          "Suprapubic Pressure",
+          "Rubin",
+          "Woods Screw"
+        ],
+        "explanation": "Maneuvers for shoulder dystocia."
+      },
+      {
+        "category": "Placental Problems",
+        "difficulty": 4,
+        "terms": [
+          "Previa",
+          "Abruption",
+          "Accreta",
+          "Vasa Previa"
+        ],
+        "explanation": "Major placental pathologies."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "groups": [
+      {
+        "category": "Stroke Circulation Syndromes",
+        "difficulty": 1,
+        "terms": [
+          "ACA",
+          "MCA",
+          "PCA",
+          "Vertebrobasilar"
+        ],
+        "explanation": "Arterial territories of ischemic stroke."
+      },
+      {
+        "category": "ICH Score Elements",
+        "difficulty": 2,
+        "terms": [
+          "GCS",
+          "ICH Volume",
+          "IVH",
+          "Infratentorial Origin"
+        ],
+        "explanation": "Components contributing to ICH score (age omitted)."
+      },
+      {
+        "category": "tPA Contraindications (Selected)",
+        "difficulty": 3,
+        "terms": [
+          "Recent Stroke",
+          "Active Bleeding",
+          "Severe Hypertension",
+          "Abnormal Glucose Extremes"
+        ],
+        "explanation": "Selected exclusions for thrombolysis decisions."
+      },
+      {
+        "category": "Lacunar Stroke Syndromes",
+        "difficulty": 4,
+        "terms": [
+          "Pure Motor Hemiparesis",
+          "Pure Sensory Stroke",
+          "Ataxic Hemiparesis",
+          "Dysarthria-Clumsy Hand"
+        ],
+        "explanation": "Classic lacunar syndromes."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "groups": [
+      {
+        "category": "Spore-Forming Bacteria",
+        "difficulty": 1,
+        "terms": [
+          "C. difficile",
+          "C. perfringens",
+          "C. tetani",
+          "B. anthracis"
+        ],
+        "explanation": "Clinically important spore formers."
+      },
+      {
+        "category": "Intracellular Pathogens",
+        "difficulty": 2,
+        "terms": [
+          "Chlamydia",
+          "Rickettsia",
+          "Listeria",
+          "Legionella"
+        ],
+        "explanation": "Bacteria with important intracellular lifestyles."
+      },
+      {
+        "category": "Spirochetes",
+        "difficulty": 3,
+        "terms": [
+          "Treponema",
+          "Borrelia",
+          "Leptospira",
+          "Brachyspira"
+        ],
+        "explanation": "Spirochetal genera of medical importance."
+      },
+      {
+        "category": "Obligate Anaerobes",
+        "difficulty": 4,
+        "terms": [
+          "Bacteroides",
+          "Clostridium",
+          "Fusobacterium",
+          "Peptostreptococcus"
+        ],
+        "explanation": "Anaerobic bacteria commonly encountered clinically."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "groups": [
+      {
+        "category": "Gut Wall Layers",
+        "difficulty": 1,
+        "terms": [
+          "Mucosa",
+          "Submucosa",
+          "Muscularis Externa",
+          "Serosa"
+        ],
+        "explanation": "Histologic layers of the GI tract."
+      },
+      {
+        "category": "Foregut Derivatives",
+        "difficulty": 2,
+        "terms": [
+          "Stomach",
+          "Liver",
+          "Pancreas",
+          "Proximal Duodenum"
+        ],
+        "explanation": "Organs derived from embryonic foregut."
+      },
+      {
+        "category": "Bilirubin Pathway Terms",
+        "difficulty": 3,
+        "terms": [
+          "Unconjugated",
+          "Conjugated",
+          "Urobilinogen",
+          "Stercobilin"
+        ],
+        "explanation": "Key bilirubin metabolism intermediates/products."
+      },
+      {
+        "category": "Sphincters of the Gut",
+        "difficulty": 4,
+        "terms": [
+          "LES",
+          "Pylorus",
+          "Sphincter of Oddi",
+          "Ileocecal Valve"
+        ],
+        "explanation": "Major GI sphincters/valves."
       }
     ]
   },
@@ -2019,48 +2018,48 @@
     "id": 42,
     "groups": [
       {
-        "category": "Vaughan Williams Class Examples",
+        "category": "Bones of the Acetabulum",
         "difficulty": 1,
-        "terms": [
-          "Quinidine",
-          "Metoprolol",
-          "Amiodarone",
-          "Verapamil"
-        ],
-        "explanation": "Representatives of antiarrhythmic classes I–IV."
-      },
-      {
-        "category": "Bones of the Hip Bone",
-        "difficulty": 2,
         "terms": [
           "Ilium",
           "Ischium",
           "Pubis",
-          "Acetabulum"
+          "Triradiate Cartilage"
         ],
-        "explanation": "Components of the coxal bone; acetabulum is their shared socket."
+        "explanation": "Contributors to the hip socket."
       },
       {
-        "category": "Hypersensitivity Prototypes",
+        "category": "Knee Ligaments",
+        "difficulty": 2,
+        "terms": [
+          "ACL",
+          "PCL",
+          "MCL",
+          "LCL"
+        ],
+        "explanation": "The four major knee ligaments."
+      },
+      {
+        "category": "Compartments of the Leg",
         "difficulty": 3,
         "terms": [
-          "Anaphylaxis",
-          "Goodpasture",
-          "Serum Sickness",
-          "PPD"
+          "Anterior",
+          "Lateral",
+          "Superficial Posterior",
+          "Deep Posterior"
         ],
-        "explanation": "Classic examples of Types I–IV hypersensitivity."
+        "explanation": "Fascial compartments of the lower leg."
       },
       {
-        "category": "Ways to Record a QRS",
+        "category": "Ottawa Ankle Rule Bones",
         "difficulty": 4,
         "terms": [
-          "ECG",
-          "Telemetry",
-          "Holter",
-          "Event Monitor"
+          "Medial Malleolus",
+          "Lateral Malleolus",
+          "Navicular",
+          "Base of 5th Metatarsal"
         ],
-        "explanation": "Modalities that capture ventricular depolarization."
+        "explanation": "Bony landmarks in Ottawa ankle/foot rules."
       }
     ]
   },
@@ -2068,102 +2067,53 @@
     "id": 43,
     "groups": [
       {
-        "category": "HIV Drug Class Examples",
+        "category": "Antibody Isotypes",
         "difficulty": 1,
         "terms": [
-          "Zidovudine",
-          "Efavirenz",
-          "Darunavir",
-          "Dolutegravir"
+          "IgG",
+          "IgA",
+          "IgM",
+          "IgE"
         ],
-        "explanation": "NRTI, NNRTI, protease inhibitor, and integrase inhibitor."
+        "explanation": "Major immunoglobulin classes."
       },
       {
-        "category": "Central Auditory Pathway",
+        "category": "Complement Pathways",
         "difficulty": 2,
         "terms": [
-          "Cochlear Nucleus",
-          "Superior Olive",
-          "Inferior Colliculus",
-          "Medial Geniculate"
+          "Classical",
+          "Alternative",
+          "Lectin",
+          "Terminal"
         ],
-        "explanation": "Major relays from brainstem to thalamus for hearing."
+        "explanation": "Activation routes of complement."
       },
       {
-        "category": "Acute Hepatic Porphyrias",
+        "category": "Hypersensitivity Type Names",
         "difficulty": 3,
         "terms": [
-          "AIP",
-          "VP",
-          "HCP",
-          "ADP"
+          "Immediate",
+          "Cytotoxic",
+          "Immune Complex",
+          "Delayed"
         ],
-        "explanation": "Acute intermittent, variegate, hereditary coproporphyria, ALA dehydratase deficiency."
+        "explanation": "Gell and Coombs types by mechanism name."
       },
       {
-        "category": "Triage Color Language",
+        "category": "Autoantibodies",
         "difficulty": 4,
         "terms": [
-          "Red Flag",
-          "Yellow Flag",
-          "Green Light",
-          "Black Tag"
+          "Anti-dsDNA",
+          "Anti-Smith",
+          "Anti-CCP",
+          "Anti-TPO"
         ],
-        "explanation": "Color metaphors used in urgency and disaster triage teaching."
+        "explanation": "Disease-associated autoantibodies."
       }
     ]
   },
   {
     "id": 44,
-    "groups": [
-      {
-        "category": "Shock Vasopressors",
-        "difficulty": 1,
-        "terms": [
-          "Norepinephrine",
-          "Vasopressin",
-          "Epinephrine",
-          "Phenylephrine"
-        ],
-        "explanation": "Pressors commonly used in distributive and other shock states."
-      },
-      {
-        "category": "Breast Exam Quadrants",
-        "difficulty": 2,
-        "terms": [
-          "UOQ",
-          "UIQ",
-          "LOQ",
-          "LIQ"
-        ],
-        "explanation": "Upper/lower outer/inner quadrant abbreviations."
-      },
-      {
-        "category": "Human Prion Diseases",
-        "difficulty": 3,
-        "terms": [
-          "CJD",
-          "vCJD",
-          "FFI",
-          "Kuru"
-        ],
-        "explanation": "Transmissible spongiform encephalopathies in humans."
-      },
-      {
-        "category": "Cold-Reactive Lab Phenomena",
-        "difficulty": 4,
-        "terms": [
-          "Cryoglobulin",
-          "Cold Agglutinin",
-          "Cryofibrinogen",
-          "Donath-Landsteiner"
-        ],
-        "explanation": "Laboratory findings involving cold-precipitating or cold-reactive proteins."
-      }
-    ]
-  },
-  {
-    "id": 45,
     "groups": [
       {
         "category": "IV Induction Agents",
@@ -2174,40 +2124,89 @@
           "Ketamine",
           "Thiopental"
         ],
-        "explanation": "Common intravenous agents used to induce general anesthesia."
+        "explanation": "Common intravenous induction drugs."
       },
       {
-        "category": "Fetal Circulatory Shunts",
+        "category": "Neuromuscular Blockers",
         "difficulty": 2,
         "terms": [
-          "Ductus Arteriosus",
-          "Foramen Ovale",
-          "Ductus Venosus",
-          "Umbilical Vein"
+          "Succinylcholine",
+          "Rocuronium",
+          "Vecuronium",
+          "Cisatracurium"
         ],
-        "explanation": "Key pathways of fetal blood flow."
+        "explanation": "Depolarizing and nondepolarizing paralytics."
       },
       {
-        "category": "Neurocutaneous Syndromes",
+        "category": "Airway Assessment Findings",
         "difficulty": 3,
         "terms": [
-          "NF1",
-          "NF2",
-          "Tuberous Sclerosis",
-          "Sturge-Weber"
+          "Mallampati III",
+          "Limited Neck Extension",
+          "Thyromental Distance Short",
+          "Beard"
         ],
-        "explanation": "Classic phakomatoses."
+        "explanation": "Features associated with difficult airway."
       },
       {
-        "category": "___ Test",
+        "category": "ASA Physical Status",
         "difficulty": 4,
         "terms": [
-          "Coombs",
-          "Schilling",
-          "Tinel",
-          "Phalen"
+          "ASA I",
+          "ASA II",
+          "ASA III",
+          "ASA IV"
         ],
-        "explanation": "Eponymous diagnostic tests."
+        "explanation": "Preoperative physical status classifications."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "groups": [
+      {
+        "category": "Adrenal Layers",
+        "difficulty": 1,
+        "terms": [
+          "Glomerulosa",
+          "Fasciculata",
+          "Reticularis",
+          "Medulla"
+        ],
+        "explanation": "Zones of the adrenal cortex plus the medulla."
+      },
+      {
+        "category": "MEN Syndromes Associations",
+        "difficulty": 2,
+        "terms": [
+          "Medullary Thyroid Cancer",
+          "Pheochromocytoma",
+          "Hyperparathyroidism",
+          "Mucosal Neuromas"
+        ],
+        "explanation": "Findings spanning MEN1/2 teaching sets."
+      },
+      {
+        "category": "Causes of SIADH",
+        "difficulty": 3,
+        "terms": [
+          "Small Cell Lung Cancer",
+          "CNS Disease",
+          "Pneumonia",
+          "SSRIs"
+        ],
+        "explanation": "Classic SIADH precipitants."
+      },
+      {
+        "category": "Diabetes Insipidus Types",
+        "difficulty": 4,
+        "terms": [
+          "Central",
+          "Nephrogenic",
+          "Primary Polydipsia",
+          "Gestational"
+        ],
+        "explanation": "Approaches to polyuria/polydipsia differential related to DI."
       }
     ]
   },
@@ -2215,48 +2214,48 @@
     "id": 46,
     "groups": [
       {
-        "category": "Parkinson Disease Therapies",
+        "category": "AIDS-Defining Illnesses",
         "difficulty": 1,
         "terms": [
-          "Levodopa",
-          "Pramipexole",
-          "Entacapone",
-          "Benztropine"
+          "Pneumocystis Pneumonia",
+          "Kaposi Sarcoma",
+          "CNS Toxoplasmosis",
+          "Cryptococcal Meningitis"
         ],
-        "explanation": "Dopaminergic and adjunct treatments for PD."
+        "explanation": "Classic AIDS-defining opportunistic conditions."
       },
       {
-        "category": "Heart Wall Layers",
+        "category": "Culture-Negative Endocarditis Causes",
         "difficulty": 2,
         "terms": [
-          "Endocardium",
-          "Myocardium",
-          "Epicardium",
-          "Pericardium"
+          "Coxiella",
+          "Bartonella",
+          "HACEK Organisms",
+          "Prior Antibiotics"
         ],
-        "explanation": "Layers of the heart and pericardial sac."
+        "explanation": "Reasons/organisms linked to culture-negative endocarditis."
       },
       {
-        "category": "Spirochetal Genera",
+        "category": "Neutropenic Fever Workup Targets",
         "difficulty": 3,
         "terms": [
-          "Treponema",
-          "Borrelia",
-          "Leptospira",
-          "Brachyspira"
+          "Pseudomonas",
+          "Candida",
+          "Aspergillus",
+          "HSV"
         ],
-        "explanation": "Medically relevant spirochetes."
+        "explanation": "Pathogens considered in febrile neutropenia."
       },
       {
-        "category": "Auscultation Targets",
+        "category": "___ Fever",
         "difficulty": 4,
         "terms": [
-          "Heart Sounds",
-          "Breath Sounds",
-          "Bowel Sounds",
-          "Bruits"
+          "Typhoid",
+          "Relapsing",
+          "Rat-Bite",
+          "Familial Mediterranean"
         ],
-        "explanation": "What clinicians listen for with a stethoscope."
+        "explanation": "Named fever syndromes (infectious and autoinflammatory)."
       }
     ]
   },
@@ -2264,79 +2263,8 @@
     "id": 47,
     "groups": [
       {
-        "category": "Gout Management Strategies",
-        "difficulty": 1,
-        "terms": [
-          "XO Inhibition",
-          "Uricosuric",
-          "Pegloticase",
-          "Colchicine"
-        ],
-        "explanation": "Approaches to acute and chronic gout (mechanisms/agents mixed)."
-      },
-      {
-        "category": "Middle Ear Neighbors",
-        "difficulty": 2,
-        "terms": [
-          "Tympanic Membrane",
-          "Eustachian Tube",
-          "Mastoid Cells",
-          "Chorda Tympani"
-        ],
-        "explanation": "Structures bordering or traversing the middle ear."
-      },
-      {
-        "category": "DNA Virus Families",
-        "difficulty": 3,
-        "terms": [
-          "Adenoviridae",
-          "Herpesviridae",
-          "Poxviridae",
-          "Papillomaviridae"
-        ],
-        "explanation": "Families of medically important DNA viruses."
-      },
-      {
-        "category": "Staging Systems",
-        "difficulty": 4,
-        "terms": [
-          "TNM",
-          "Ann Arbor",
-          "Breslow",
-          "Child-Pugh"
-        ],
-        "explanation": "Widely used cancer and liver severity/staging tools."
-      }
-    ]
-  },
-  {
-    "id": 48,
-    "groups": [
-      {
-        "category": "Colony-Stimulating Strategies",
-        "difficulty": 1,
-        "terms": [
-          "Epoetin",
-          "Filgrastim",
-          "Romiplostim",
-          "Sargramostim"
-        ],
-        "explanation": "Agents stimulating RBC, neutrophil, platelet, or granulocyte-macrophage lines."
-      },
-      {
-        "category": "De Quervain Compartment Tendons",
-        "difficulty": 2,
-        "terms": [
-          "APL",
-          "EPB",
-          "Radial Styloid",
-          "Snuffbox"
-        ],
-        "explanation": "Anatomy tied to first dorsal compartment tenosynovitis."
-      },
-      {
         "category": "Granulomatous Diseases",
-        "difficulty": 3,
+        "difficulty": 1,
         "terms": [
           "Sarcoidosis",
           "Tuberculosis",
@@ -2346,15 +2274,86 @@
         "explanation": "Conditions classically forming granulomas."
       },
       {
-        "category": "Auscultatory Metaphors",
+        "category": "Amyloid Types",
+        "difficulty": 2,
+        "terms": [
+          "AL",
+          "AA",
+          "ATTR",
+          "AB2M"
+        ],
+        "explanation": "Major amyloid protein categories."
+      },
+      {
+        "category": "Necrosis Patterns",
+        "difficulty": 3,
+        "terms": [
+          "Coagulative",
+          "Liquefactive",
+          "Caseous",
+          "Fat"
+        ],
+        "explanation": "Classic histologic necrosis patterns."
+      },
+      {
+        "category": "Pigments in Tissue",
         "difficulty": 4,
         "terms": [
-          "Gallop",
-          "Rub",
-          "Click",
-          "Snap"
+          "Hemosiderin",
+          "Lipofuscin",
+          "Melanin",
+          "Bilirubin"
         ],
-        "explanation": "Descriptive heart-sound findings."
+        "explanation": "Endogenous pigments seen pathologically."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "groups": [
+      {
+        "category": "Diastolic Murmurs",
+        "difficulty": 1,
+        "terms": [
+          "Aortic Regurgitation",
+          "Mitral Stenosis",
+          "Pulmonic Regurgitation",
+          "Tricuspid Stenosis"
+        ],
+        "explanation": "Classic diastolic murmurs."
+      },
+      {
+        "category": "Systolic Murmurs",
+        "difficulty": 2,
+        "terms": [
+          "Aortic Stenosis",
+          "Mitral Regurgitation",
+          "HOCM",
+          "VSD"
+        ],
+        "explanation": "Common systolic murmurs."
+      },
+      {
+        "category": "Extra Heart Sounds",
+        "difficulty": 3,
+        "terms": [
+          "S3",
+          "S4",
+          "Opening Snap",
+          "Ejection Click"
+        ],
+        "explanation": "Added sounds beyond S1/S2."
+      },
+      {
+        "category": "Palpation Findings",
+        "difficulty": 4,
+        "terms": [
+          "Thrill",
+          "Heave",
+          "Tap",
+          "Pulsus Paradoxus"
+        ],
+        "explanation": "Bedside cardiovascular palpation/pulse findings."
       }
     ]
   },
@@ -2362,48 +2361,48 @@
     "id": 49,
     "groups": [
       {
-        "category": "Metal Chelation Pairings",
+        "category": "G-Protein Coupled Receptor Types",
         "difficulty": 1,
         "terms": [
-          "Deferoxamine",
-          "EDTA",
-          "Dimercaprol",
-          "Succimer"
+          "Gs",
+          "Gi",
+          "Gq",
+          "Golf"
         ],
-        "explanation": "Chelators used for iron, lead, and other heavy metals."
+        "explanation": "Major heterotrimeric G-protein classes (Golf in olfaction)."
       },
       {
-        "category": "Acute-Phase Reactants",
+        "category": "Enzyme-Inhibitor Drug Examples",
         "difficulty": 2,
         "terms": [
-          "CRP",
-          "Fibrinogen",
-          "Ferritin",
-          "Serum Amyloid A"
+          "ACE Inhibitor",
+          "COX Inhibitor",
+          "HMG-CoA Reductase Inhibitor",
+          "XO Inhibitor"
         ],
-        "explanation": "Proteins that rise (or fall, for albumin) with inflammation — positive reactants listed."
+        "explanation": "Drug classes defined by enzyme inhibition."
       },
       {
-        "category": "Pediatric Small Round Blue Cell Tumors",
+        "category": "Cytochrome P450 Inducers",
         "difficulty": 3,
         "terms": [
-          "Neuroblastoma",
-          "Wilms Tumor",
-          "Ewing Sarcoma",
-          "Medulloblastoma"
+          "Rifampin",
+          "Carbamazepine",
+          "Phenytoin",
+          "St. John's Wort"
         ],
-        "explanation": "Classic tumors in the small round blue cell differential."
+        "explanation": "Classic CYP inducers."
       },
       {
-        "category": "___ Phenomenon",
+        "category": "Zero-Order Elimination Examples",
         "difficulty": 4,
         "terms": [
-          "Raynaud",
-          "Koebner",
-          "Ashman",
-          "Dawn"
+          "Ethanol",
+          "High-Dose Aspirin",
+          "High-Dose Theophylline",
+          "Omeprazole Saturable"
         ],
-        "explanation": "Named clinical phenomena across specialties."
+        "explanation": "Drugs/contexts classically cited for zero-order or saturable kinetics."
       }
     ]
   },
@@ -2411,51 +2410,50 @@
     "id": 50,
     "groups": [
       {
-        "category": "Toxin / Drug Antidotes",
+        "category": "SOAP Note Sections",
         "difficulty": 1,
         "terms": [
-          "Naloxone",
-          "Flumazenil",
-          "N-Acetylcysteine",
-          "Fomepizole"
+          "Subjective",
+          "Objective",
+          "Assessment",
+          "Plan"
         ],
-        "explanation": "Antidotes for opioids, benzos, acetaminophen, and toxic alcohols."
+        "explanation": "The four parts of a SOAP note."
       },
       {
-        "category": "Cations on Chem Panels",
+        "category": "Admission Order Categories",
         "difficulty": 2,
         "terms": [
-          "Sodium",
-          "Potassium",
-          "Calcium",
-          "Magnesium"
+          "Diet",
+          "Activity",
+          "Vitals",
+          "Diagnostics"
         ],
-        "explanation": "Major cations monitored in acute care."
+        "explanation": "Common admission order groupings."
       },
       {
-        "category": "Hypothalamic Nuclei",
+        "category": "Code Status Options",
         "difficulty": 3,
         "terms": [
-          "Supraoptic",
-          "Paraventricular",
-          "Arcuate",
-          "Suprachiasmatic"
+          "Full Code",
+          "DNR",
+          "DNI",
+          "Comfort Measures Only"
         ],
-        "explanation": "Nuclei tied to ADH/oxytocin, releasing factors, and circadian rhythm."
+        "explanation": "Goals-of-care / code status designations."
       },
       {
-        "category": "End-of-Course Clinical Words",
+        "category": "Discharge Disposition Words",
         "difficulty": 4,
         "terms": [
-          "Remission",
-          "Cure",
-          "Discharge",
-          "Follow-Up"
+          "Home",
+          "SNF",
+          "Rehab",
+          "Hospice"
         ],
-        "explanation": "Terms associated with completing a clinical course."
+        "explanation": "Common discharge destinations."
       }
     ]
   }
 ];
-  global.MED_PUZZLES = MED_PUZZLES;
 })(typeof window !== "undefined" ? window : globalThis);
