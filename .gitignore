@@ -1,0 +1,16 @@
+# Local / IDE
+.venv/
+.idea/
+.vscode/
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs / temp
+*.log
+*.tmp
+.cache/
