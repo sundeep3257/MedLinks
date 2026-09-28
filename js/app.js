@@ -316,13 +316,14 @@
     shuffleBtn: document.getElementById("shuffle-btn"),
     deselectBtn: document.getElementById("deselect-btn"),
     submitBtn: document.getElementById("submit-btn"),
-    results: document.getElementById("results"),
+    resultsModal: document.getElementById("results-modal"),
     resultsTitle: document.getElementById("results-title"),
     resultsSubtitle: document.getElementById("results-subtitle"),
     resultsGrid: document.getElementById("results-grid"),
     copyBtn: document.getElementById("copy-btn"),
     playNextBtn: document.getElementById("play-next-btn"),
     viewArchiveBtn: document.getElementById("view-archive-btn"),
+    reopenResultsBtn: document.getElementById("reopen-results-btn"),
     resetBtn: document.getElementById("reset-btn"),
     confirmResetBtn: document.getElementById("confirm-reset-btn"),
     archiveList: document.getElementById("archive-list"),
@@ -464,12 +465,7 @@
     });
   }
 
-  function renderResults() {
-    if (state.status !== "won" && state.status !== "lost") {
-      els.results.classList.add("hidden");
-      return;
-    }
-    els.results.classList.remove("hidden");
+  function populateResultsContent() {
     els.resultsTitle.textContent = state.status === "won" ? "Well done!" : "Next time.";
     const label = formatDisplayDate(state.puzzle.date);
     els.resultsSubtitle.textContent =
@@ -494,6 +490,21 @@
     els.playNextBtn.textContent = next ? "Next Puzzle" : "No newer puzzle";
   }
 
+  function showResultsModal() {
+    if (state.status !== "won" && state.status !== "lost") return;
+    populateResultsContent();
+    openModal("results-modal");
+  }
+
+  function renderResultsChrome() {
+    const finished = state.status === "won" || state.status === "lost";
+    els.reopenResultsBtn.classList.toggle("hidden", !finished);
+    // Hide play controls while finished; show View Results instead
+    els.shuffleBtn.classList.toggle("hidden", finished);
+    els.deselectBtn.classList.toggle("hidden", finished);
+    els.submitBtn.classList.toggle("hidden", finished);
+  }
+
   function renderChrome() {
     const today = todayISO();
     const isToday = state.puzzle.date === today;
@@ -513,6 +524,8 @@
 
     document.querySelector(".mistakes").style.visibility =
       state.status === "playing" ? "visible" : "hidden";
+
+    renderResultsChrome();
   }
 
   function renderAll() {
@@ -520,7 +533,6 @@
     renderMistakeDots();
     renderSolved();
     renderTiles();
-    renderResults();
   }
 
   // —— Actions ——
@@ -677,6 +689,10 @@
     progress.currentDate = state.puzzle.date;
     saveProgress(progress);
     renderAll();
+
+    // Overlay results like Wordle/Connections (brief delay so win confetti starts first)
+    const delay = outcome === "won" ? 550 : 350;
+    window.setTimeout(() => showResultsModal(), delay);
   }
 
   // —— Confetti (from left & right edges on win) ——
@@ -784,7 +800,8 @@
     raf = requestAnimationFrame(frame);
   }
 
-  function loadPuzzleByDate(date) {
+  function loadPuzzleByDate(date, options) {
+    const opts = options || {};
     const puzzle = getPuzzleByDate(date);
     if (!puzzle) {
       setStatus("Puzzle not found.", "error");
@@ -794,11 +811,20 @@
       setStatus("That puzzle unlocks at midnight on its date.", "error");
       return;
     }
+    closeModal("results-modal");
     state = createState(puzzle);
     progress.currentDate = puzzle.date;
     saveProgress(progress);
     setStatus("");
     renderAll();
+
+    // Returning to a finished puzzle shows results overlay (Wordle-style)
+    if (
+      opts.showResults !== false &&
+      (state.status === "won" || state.status === "lost")
+    ) {
+      window.setTimeout(() => showResultsModal(), 200);
+    }
   }
 
   function buildResultsText() {
@@ -919,18 +945,25 @@
     });
     els.playNextBtn.addEventListener("click", () => {
       const next = adjacentAvailable(state.puzzle.date, 1);
-      if (next) loadPuzzleByDate(next.date);
+      if (next) {
+        closeModal("results-modal");
+        loadPuzzleByDate(next.date);
+      }
     });
     els.copyBtn.addEventListener("click", copyResults);
+    els.reopenResultsBtn.addEventListener("click", () => showResultsModal());
     els.viewArchiveBtn.addEventListener("click", () => {
+      closeModal("results-modal");
       renderArchive();
       openModal("archive-modal");
     });
     els.puzzleSelectBtn.addEventListener("click", () => {
+      closeModal("results-modal");
       renderArchive();
       openModal("archive-modal");
     });
     els.archiveBtn.addEventListener("click", () => {
+      closeModal("results-modal");
       renderArchive();
       openModal("archive-modal");
     });
@@ -940,8 +973,9 @@
       progress = defaultProgress();
       saveProgress(progress);
       closeModal("reset-modal");
+      closeModal("results-modal");
       const latest = latestAvailable();
-      if (latest) loadPuzzleByDate(latest.date);
+      if (latest) loadPuzzleByDate(latest.date, { showResults: false });
       setStatus("Progress reset.", "success");
     });
 
@@ -951,7 +985,7 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        ["archive-modal", "help-modal", "reset-modal"].forEach(closeModal);
+        ["results-modal", "archive-modal", "help-modal", "reset-modal"].forEach(closeModal);
       }
       if (
         e.key === "Enter" &&

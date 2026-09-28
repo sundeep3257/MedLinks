@@ -69,10 +69,22 @@
       <button type="button" class="btn btn-secondary" id="shuffle-btn">Shuffle</button>
       <button type="button" class="btn btn-secondary" id="deselect-btn">Deselect All</button>
       <button type="button" class="btn btn-primary" id="submit-btn" disabled>Submit</button>
+      <button type="button" class="btn btn-primary hidden" id="reopen-results-btn">View Results</button>
     </div>
 
-    <section class="results hidden" id="results" aria-live="polite">
-      <h2 class="results-title" id="results-title">Well done!</h2>
+    <footer class="site-footer">
+      <button type="button" class="text-btn" id="reset-btn">Reset Progress</button>
+    </footer>
+  </main>
+
+  <!-- Results modal (shown when a puzzle is finished) -->
+  <div class="modal hidden" id="results-modal" role="dialog" aria-modal="true" aria-labelledby="results-title">
+    <div class="modal-backdrop" data-close="results-modal"></div>
+    <div class="modal-panel modal-panel--results">
+      <div class="modal-header">
+        <h2 class="results-title" id="results-title">Well done!</h2>
+        <button type="button" class="icon-btn" data-close="results-modal" aria-label="Close">×</button>
+      </div>
       <p class="results-subtitle" id="results-subtitle"></p>
       <div class="results-grid" id="results-grid" aria-hidden="true"></div>
       <div class="results-actions">
@@ -80,12 +92,8 @@
         <button type="button" class="btn btn-secondary" id="play-next-btn">Next Puzzle</button>
         <button type="button" class="btn btn-secondary" id="view-archive-btn">View the Archive</button>
       </div>
-    </section>
-
-    <footer class="site-footer">
-      <button type="button" class="text-btn" id="reset-btn">Reset Progress</button>
-    </footer>
-  </main>
+    </div>
+  </div>
 
   <!-- Archive modal -->
   <div class="modal hidden" id="archive-modal" role="dialog" aria-modal="true" aria-labelledby="archive-modal-title">
