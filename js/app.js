@@ -676,9 +676,15 @@
         .forEach((g) => state.solved.push(g));
       state.remainingTerms = [];
       setStatus("Out of mistakes — solution revealed.", "error");
+      if (window.MedLinksAnalytics) {
+        window.MedLinksAnalytics.puzzleLoss(state.puzzle.date);
+      }
     } else {
       setStatus("Puzzle complete!", "success");
       fireSideConfetti();
+      if (window.MedLinksAnalytics) {
+        window.MedLinksAnalytics.puzzleWin(state.puzzle.date);
+      }
     }
 
     progress.puzzles[state.puzzle.date] = {
@@ -817,6 +823,10 @@
     saveProgress(progress);
     setStatus("");
     renderAll();
+
+    if (state.status === "playing" && window.MedLinksAnalytics) {
+      window.MedLinksAnalytics.puzzleStart(puzzle.date);
+    }
 
     // Returning to a finished puzzle shows results overlay (Wordle-style)
     if (
@@ -969,6 +979,27 @@
     });
     els.helpBtn.addEventListener("click", () => openModal("help-modal"));
     els.resetBtn.addEventListener("click", () => openModal("reset-modal"));
+
+    // Secret owner entry: click the MedLinks title 5 times quickly
+    (function bindOwnerMetricsGesture() {
+      const title = document.querySelector(".brand-title");
+      if (!title) return;
+      let clicks = 0;
+      let timer = 0;
+      title.style.cursor = "default";
+      title.title = "";
+      title.addEventListener("click", () => {
+        clicks += 1;
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          clicks = 0;
+        }, 1400);
+        if (clicks >= 5) {
+          clicks = 0;
+          window.location.href = "metrics.html";
+        }
+      });
+    })();
     els.confirmResetBtn.addEventListener("click", () => {
       progress = defaultProgress();
       saveProgress(progress);
@@ -1012,6 +1043,10 @@
   async function init() {
     progress = loadProgress();
     bindEvents();
+
+    if (window.MedLinksAnalytics) {
+      window.MedLinksAnalytics.pageView();
+    }
 
     try {
       puzzles = await loadGameKey();

@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Persisted metrics (do not commit)
+data/
+*.tmp
+
+# Local env
+.env
+.env.*

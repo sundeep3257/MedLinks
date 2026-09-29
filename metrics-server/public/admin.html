@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>MedLinks Metrics (Private)</title>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --ink: #1a1a1a;
+      --muted: #5c5c5c;
+      --border: #d9d6ce;
+      --panel: #fff;
+      --accent: #1a1a1a;
+      --ok: #6baf8d;
+      --bad: #b87a9e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(ellipse 120% 80% at 50% -20%, #f3efe4 0%, transparent 55%), var(--bg);
+      color: var(--ink);
+      min-height: 100dvh;
+    }
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.75rem;
+    }
+    .sub {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+    button {
+      font: inherit;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.65rem 1.2rem;
+      border: 1.5px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .error {
+      color: #b33a3a;
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      background: #fff;
+    }
+    .stat .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat .value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 0.2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; }
+    .hidden { display: none; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-top: 0.75rem; }
+    .win { color: #1f6b45; }
+    .loss { color: #8a3d66; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>MedLinks Metrics</h1>
+    <p class="sub">Owner-only dashboard. Not linked from the public game.</p>
+
+    <section class="card" id="login-panel">
+      <form id="login-form">
+        <label for="password">Admin password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required />
+        <button type="submit">Sign in</button>
+        <p class="error hidden" id="login-error"></p>
+      </form>
+    </section>
+
+    <section class="hidden" id="dash-panel">
+      <div class="toolbar">
+        <div class="meta" id="updated-at"></div>
+        <div>
+          <button type="button" class="secondary" id="refresh-btn">Refresh</button>
+          <button type="button" class="secondary" id="logout-btn">Log out</button>
+        </div>
+      </div>
+
+      <div class="stats" id="stats-cards"></div>
+
+      <div class="card">
+        <h2 style="margin:0 0 0.75rem; font-size:1.1rem;">By puzzle date</h2>
+        <div style="overflow:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Starts</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Solve rate</th>
+              </tr>
+            </thead>
+            <tbody id="puzzle-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const TOKEN_KEY = "medlinks-metrics-token";
+      const loginPanel = document.getElementById("login-panel");
+      const dashPanel = document.getElementById("dash-panel");
+      const loginForm = document.getElementById("login-form");
+      const loginError = document.getElementById("login-error");
+      const statsCards = document.getElementById("stats-cards");
+      const puzzleRows = document.getElementById("puzzle-rows");
+      const updatedAt = document.getElementById("updated-at");
+
+      function getToken() {
+        return sessionStorage.getItem(TOKEN_KEY) || "";
+      }
+      function setToken(t) {
+        sessionStorage.setItem(TOKEN_KEY, t);
+      }
+      function clearToken() {
+        sessionStorage.removeItem(TOKEN_KEY);
+      }
+
+      function showLogin(msg) {
+        dashPanel.classList.add("hidden");
+        loginPanel.classList.remove("hidden");
+        if (msg) {
+          loginError.textContent = msg;
+          loginError.classList.remove("hidden");
+        } else {
+          loginError.classList.add("hidden");
+        }
+      }
+
+      function showDash() {
+        loginPanel.classList.add("hidden");
+        dashPanel.classList.remove("hidden");
+      }
+
+      async function login(password) {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password }),
+        });
+        if (!res.ok) throw new Error("Invalid password");
+        const data = await res.json();
+        setToken(data.token);
+      }
+
+      async function loadStats() {
+        const res = await fetch("/api/stats", {
+          headers: { Authorization: "Bearer " + getToken() },
+        });
+        if (res.status === 401) {
+          clearToken();
+          showLogin("Session expired. Sign in again.");
+          return;
+        }
+        if (!res.ok) throw new Error("Failed to load stats");
+        const data = await res.json();
+        renderStats(data);
+        showDash();
+      }
+
+      function renderStats(data) {
+        const t = data.totals || {};
+        const cards = [
+          ["Unique viewers", t.uniqueViewers || 0],
+          ["Page views", t.pageViews || 0],
+          ["Puzzles started", t.puzzleStarts || 0],
+          ["Completed (win)", t.wins || 0],
+          ["Completed (loss)", t.losses || 0],
+        ];
+        statsCards.innerHTML = cards
+          .map(function (c) {
+            return (
+              '<div class="stat"><div class="label">' +
+              c[0] +
+              '</div><div class="value">' +
+              c[1] +
+              "</div></div>"
+            );
+          })
+          .join("");
+
+        updatedAt.textContent = data.updatedAt
+          ? "Last updated: " + new Date(data.updatedAt).toLocaleString()
+          : "No events yet";
+
+        const rows = (data.byPuzzle || []).slice().reverse();
+        puzzleRows.innerHTML = rows.length
+          ? rows
+              .map(function (r) {
+                const finished = (r.wins || 0) + (r.losses || 0);
+                const rate =
+                  finished > 0
+                    ? Math.round(((r.wins || 0) / finished) * 100) + "%"
+                    : "—";
+                return (
+                  "<tr><td>" +
+                  r.date +
+                  "</td><td>" +
+                  (r.starts || 0) +
+                  '</td><td class="win">' +
+                  (r.wins || 0) +
+                  '</td><td class="loss">' +
+                  (r.losses || 0) +
+                  "</td><td>" +
+                  rate +
+                  "</td></tr>"
+                );
+              })
+              .join("")
+          : '<tr><td colspan="5">No puzzle events yet.</td></tr>';
+      }
+
+      loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        loginError.classList.add("hidden");
+        try {
+          await login(document.getElementById("password").value);
+          await loadStats();
+          loginForm.reset();
+        } catch (err) {
+          showLogin(err.message || "Login failed");
+        }
+      });
+
+      document.getElementById("logout-btn").addEventListener("click", function () {
+        clearToken();
+        showLogin();
+      });
+      document.getElementById("refresh-btn").addEventListener("click", function () {
+        loadStats().catch(function (err) {
+          showLogin(err.message);
+        });
+      });
+
+      if (getToken()) {
+        loadStats().catch(function () {
+          clearToken();
+          showLogin();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

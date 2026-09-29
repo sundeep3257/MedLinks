@@ -6,92 +6,88 @@ A daily medical grouping puzzle: find four groups of four related terms. One new
 
 ```
 /
-├── index.html          # Main page
-├── gamekey.csv         # Ground-truth puzzle data (one row per day)
+├── index.html          # Main game
+├── metrics.html        # Secret owner metrics portal
+├── gamekey.csv         # Puzzle data
 ├── css/styles.css
-├── js/app.js           # Gameplay, daily unlock, archive, localStorage
-├── scripts/            # Optional CSV export/validate helpers
+├── js/
+│   ├── config.js       # Put your GA4 Measurement ID here
+│   ├── analytics.js    # Sends events to Google Analytics 4
+│   └── app.js
 ├── favicon.svg
 └── README.md
 ```
 
 ## Run locally
 
-Serve the folder over HTTP (required so the browser can fetch `gamekey.csv`):
-
 ```bash
 npx --yes serve .
 ```
 
-Then open the URL shown in the terminal.
+## User metrics (Google Analytics 4)
+
+The game sends anonymous events to **Google Analytics 4**. You do **not** need a separate Render web service.
+
+### Tracked events
+
+| Event | Meaning |
+| --- | --- |
+| `medlinks_page_view` | Someone loaded the site |
+| `medlinks_puzzle_start` | A puzzle was started (`puzzle_date` param) |
+| `medlinks_puzzle_win` | Puzzle completed successfully |
+| `medlinks_puzzle_loss` | Puzzle failed (out of mistakes) |
+
+### Setup steps
+
+1. Open [Google Analytics](https://analytics.google.com/) and sign in with your Google account.
+2. **Admin** (gear) → **Create** → **Property** (GA4).
+3. Add a **Web** data stream:
+   - Website URL = your Render site (e.g. `https://medlinks.onrender.com`)
+   - Stream name = `MedLinks`
+4. Copy the **Measurement ID** (`G-XXXXXXXXXX`).
+5. In this repo, edit `js/config.js`:
+   ```js
+   gaMeasurementId: "G-XXXXXXXXXX",
+   ```
+6. Commit / push and let Render redeploy the static site (or upload the updated `config.js`).
+7. Visit your live site once, play a bit, then in GA4 open **Reports → Realtime** to confirm events appear (can take a minute).
+8. For historical counts: **Reports → Engagement → Events**.
+
+Optional — mark `puzzle_date` as a custom dimension in GA4 (Admin → Custom definitions) so you can break down starts/wins/losses by puzzle day more easily.
+
+### Owner-only portal on your site
+
+- Click the **MedLinks** title **5 times** quickly, **or** go to `/metrics.html`
+- Passphrase (default): `medlinks-owner`
+- That page links you into Google Analytics; it does not store counts itself.
+
+Change the passphrase hash in `js/config.js` with:
+
+```bash
+node -e "console.log(require('crypto').createHash('sha256').update('YOUR_PASSWORD').digest('hex'))"
+```
+
+**Privacy note:** The passphrase only hides the portal page. Real metrics access is protected by your Google account.
 
 ## Daily puzzles & archive
 
-- Puzzles are scheduled one per day starting `2026-09-01`.
-- Availability uses the visitor’s **local calendar date** (unlocks at local midnight).
-- The archive lists every row in `gamekey.csv`; future dates stay locked until their day.
+- One puzzle per day from `2026-09-01`.
+- Unlock uses the visitor’s local calendar date.
+- Archive lists only unlocked puzzles.
 
 ## Puzzle data (`gamekey.csv`)
 
-`gamekey.csv` is the source of truth. Each row is one daily puzzle with a board-wide **theme** (for example Labor and Delivery, Oncology, Orthopedics). All 16 terms fit that theme, so groups can’t be solved merely by being “the only vaccines/bones/labs on the board.”
+Append dated rows to add future puzzles, then redeploy.
 
-| Column groups | Contents |
-| --- | --- |
-| `date` | `YYYY-MM-DD` |
-| `theme` | Board-wide topic (not shown as a spoiler in-game) |
-| `easy_*` | category, 4 terms, explanation |
-| `medium_*` | category, 4 terms, explanation |
-| `hard_*` | category, 4 terms, explanation |
-| `tricky_*` | category, 4 terms, explanation |
-
-### Add future puzzles
-
-1. Append a new row to `gamekey.csv` with the next date and four category groups.
-2. Redeploy / refresh the static files.
-3. That puzzle becomes playable at local midnight on its `date`.
-
-Optional helper (regenerates the CSV from the older `js/puzzles.js` seed data):
-
-```bash
-node scripts/export-gamekey.js
-node scripts/validate-gamekey.js
-```
-
-## Deploy
-
-Upload / push the project root (including `gamekey.csv`) to any static host: GitHub Pages, Netlify, Vercel, Render Static Sites, Cloudflare Pages, etc.
-
-No environment variables or backend required. Progress is stored in the browser via `localStorage`.
-
-### Deploy on Render (Static Site)
-
-1. Put this project in a GitHub (or GitLab/Bitbucket) repository and push it.
-2. In the [Render Dashboard](https://dashboard.render.com/), click **New +** → **Static Site**.
-3. Connect the repository.
-4. Use these settings:
+## Deploy on Render (Static Site)
 
 | Field | Value |
 | --- | --- |
-| **Name** | `medlinks` (or any name you like) |
-| **Branch** | `main` (or your default branch) |
-| **Root Directory** | leave blank |
-| **Build Command** | leave blank, or use `true` |
 | **Publish Directory** | `.` |
+| **Build Command** | blank or `true` |
+| **Environment variables** | none |
 
-5. **Environment variables:** none required.
-6. Click **Create Static Site**.
-
-Render will serve `index.html` from the repo root along with `css/`, `js/`, `gamekey.csv`, and `favicon.svg`.
-
-**Required runtime files (must be in the published root):**
-
-- `index.html`
-- `gamekey.csv`
-- `css/styles.css`
-- `js/app.js`
-- `favicon.svg`
-
-`scripts/` and `js/puzzles.js` are optional (helpers / seed data only; the live game reads `gamekey.csv`).
+Publish at least: `index.html`, `metrics.html`, `gamekey.csv`, `css/`, `js/`, `favicon.svg`.
 
 ## License / notes
 

@@ -1,9 +1,7 @@
-# Optional Render Blueprint (Static Site)
-# https://render.com/docs/blueprint-spec
+# Render Static Site (game only — no metrics web service required)
 services:
   - type: web
     name: medlinks
     runtime: static
-    # No build step — files are already static
     buildCommand: "true"
     staticPublishPath: .
