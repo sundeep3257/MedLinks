@@ -457,6 +457,106 @@
     });
   }
 
+  // Offscreen label used to measure real glyph width (font, tracking, uppercase).
+  const tileMeasure = document.createElement("span");
+  tileMeasure.setAttribute("aria-hidden", "true");
+  tileMeasure.style.cssText =
+    "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;padding:0;border:0;margin:0;text-transform:uppercase;";
+  document.body.appendChild(tileMeasure);
+
+  /** Soft-wrap after hyphens; spaces already wrap. Never break mid-word. */
+  function formatTileLabel(term) {
+    return String(term).replace(/-/g, "-\u200B");
+  }
+
+  /** Unbreakable chunks: split on spaces and hyphens so phrases stay large. */
+  function tileSegments(term) {
+    return String(term)
+      .split(/[\s-]+/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+
+  function measureTileLabel(text, fontSizePx, fontFamily, fontWeight, letterSpacingEm) {
+    tileMeasure.style.fontSize = fontSizePx + "px";
+    tileMeasure.style.fontFamily = fontFamily;
+    tileMeasure.style.fontWeight = fontWeight;
+    tileMeasure.style.letterSpacing = letterSpacingEm + "em";
+    tileMeasure.textContent = text;
+    return tileMeasure.getBoundingClientRect().width;
+  }
+
+  /** Size from the longest word/segment; multi-word lines wrap instead of shrinking. */
+  function fontSizeToFit(term, availablePx, maxPx, fontFamily, fontWeight, letterSpacingEm) {
+    if (!(availablePx > 0) || !term || !(maxPx > 0)) return maxPx;
+    const segments = tileSegments(term);
+    if (!segments.length) return maxPx;
+
+    let widest = 0;
+    segments.forEach((segment) => {
+      const width = measureTileLabel(segment, maxPx, fontFamily, fontWeight, letterSpacingEm);
+      if (width > widest) widest = width;
+    });
+    if (!(widest > availablePx)) return maxPx;
+
+    let size = maxPx * (availablePx / widest);
+    let fittedWidest = 0;
+    segments.forEach((segment) => {
+      const width = measureTileLabel(segment, size, fontFamily, fontWeight, letterSpacingEm);
+      if (width > fittedWidest) fittedWidest = width;
+    });
+    if (fittedWidest > availablePx && fittedWidest > 0) {
+      size *= availablePx / fittedWidest;
+    }
+    return size;
+  }
+
+  function fitTileText() {
+    if (!els.tileGrid || els.tileGrid.hidden) return;
+    const tiles = Array.from(els.tileGrid.querySelectorAll(".tile"));
+    if (!tiles.length) return;
+
+    tiles.forEach((tile) => {
+      tile.style.fontSize = "";
+    });
+
+    const jobs = tiles.map((tile) => {
+      const cs = getComputedStyle(tile);
+      const maxPx = parseFloat(cs.fontSize);
+      const letterSpacingPx = cs.letterSpacing === "normal" ? 0 : parseFloat(cs.letterSpacing);
+      const available =
+        tile.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 1;
+      return {
+        tile,
+        available,
+        maxPx,
+        family: cs.fontFamily,
+        weight: cs.fontWeight,
+        letterSpacingEm: maxPx ? letterSpacingPx / maxPx : 0,
+        text: tile.dataset.term || tile.getAttribute("aria-label") || "",
+      };
+    });
+
+    jobs.forEach(({ tile, available, maxPx, family, weight, letterSpacingEm, text }) => {
+      const size = fontSizeToFit(text, available, maxPx, family, weight, letterSpacingEm);
+      if (!Number.isFinite(size) || size >= maxPx) {
+        tile.style.fontSize = "";
+        return;
+      }
+      tile.style.fontSize = `${Math.floor(size * 100) / 100}px`;
+    });
+  }
+
+  if (window.ResizeObserver && els.tileGrid) {
+    new ResizeObserver(() => fitTileText()).observe(els.tileGrid);
+  } else {
+    window.addEventListener("resize", () => fitTileText());
+  }
+
+  if (document.fonts) {
+    document.fonts.ready.then(() => fitTileText());
+  }
+
   function renderTiles() {
     els.tileGrid.innerHTML = "";
     if (state.status !== "playing") {
@@ -469,12 +569,17 @@
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "tile" + (state.selected.includes(term) ? " is-selected" : "");
-      btn.textContent = term;
+      btn.dataset.term = term;
+      const label = document.createElement("span");
+      label.className = "tile-label";
+      label.textContent = formatTileLabel(term);
+      btn.appendChild(label);
       btn.setAttribute("aria-pressed", state.selected.includes(term) ? "true" : "false");
       btn.setAttribute("aria-label", term);
       btn.addEventListener("click", () => toggleSelect(term));
       els.tileGrid.appendChild(btn);
     });
+    fitTileText();
   }
 
   function populateResultsContent() {
