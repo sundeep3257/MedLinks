@@ -8,8 +8,7 @@
  * 4. Paste it into gaMeasurementId below and redeploy.
  *
  * Owner portal: click "MedLinks" 5× quickly, or open /metrics.html
- * Default passphrase: medlinks-owner
- * To change it, replace metricsPassphraseSha256 with the output of:
+ * To change the passphrase hash, run:
  *   node -e "console.log(require('crypto').createHash('sha256').update('YOUR_PASSWORD').digest('hex'))"
  */
 window.MEDLINKS_CONFIG = {
@@ -18,5 +17,5 @@ window.MEDLINKS_CONFIG = {
 
   /** SHA-256 hex of the owner passphrase for metrics.html */
   metricsPassphraseSha256:
-    "7187c1107ea9d02f359c1ed76561726b2851efac347cbf0d8f80afaff50dab8f",
+    "64ce49d5a68726b0d2fed2d9613bcf58b409e05ff7c67c77dc4702e0e0f4f30a",
 };

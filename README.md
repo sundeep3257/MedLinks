@@ -58,16 +58,7 @@ Optional — mark `puzzle_date` as a custom dimension in GA4 (Admin → Custom d
 ### Owner-only portal on your site
 
 - Click the **MedLinks** title **5 times** quickly, **or** go to `/metrics.html`
-- Passphrase (default): `medlinks-owner`
-- That page links you into Google Analytics; it does not store counts itself.
-
-Change the passphrase hash in `js/config.js` with:
-
-```bash
-node -e "console.log(require('crypto').createHash('sha256').update('YOUR_PASSWORD').digest('hex'))"
-```
-
-**Privacy note:** The passphrase only hides the portal page. Real metrics access is protected by your Google account.
+- Passphrase-gated owner portal (set hash in `js/config.js`)
 
 ## Daily puzzles & archive
 
