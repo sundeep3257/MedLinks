@@ -57,6 +57,17 @@
     return dateISO <= todayISO();
   }
 
+  /** Accept YYYY-MM-DD or M/D/YYYY (common after Excel edits). */
+  function normalizePuzzleDate(raw) {
+    const s = String(raw || "").trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    const slash = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (slash) {
+      return `${slash[3]}-${pad2(Number(slash[1]))}-${pad2(Number(slash[2]))}`;
+    }
+    return null;
+  }
+
   // —— CSV parsing ——
 
   function parseCsv(text) {
@@ -132,9 +143,10 @@
     const list = [];
     for (let r = 1; r < rows.length; r++) {
       const cells = rows[r];
-      const date = String(cells[idx.date] || "").trim();
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-        throw new Error(`Invalid date on row ${r + 1}: ${date}`);
+      const dateRaw = String(cells[idx.date] || "").trim();
+      const date = normalizePuzzleDate(dateRaw);
+      if (!date) {
+        throw new Error(`Invalid date on row ${r + 1}: ${dateRaw}`);
       }
 
       const groups = [1, 2, 3, 4].map((difficulty) => {
@@ -1052,8 +1064,13 @@
       puzzles = await loadGameKey();
     } catch (err) {
       console.error(err);
+      const isFetchFailure =
+        err instanceof TypeError ||
+        (err && err.message && /failed to fetch|networkerror|load failed/i.test(err.message));
       setStatus(
-        "Could not load gamekey.csv. Serve this site over HTTP (not as a raw file).",
+        isFetchFailure
+          ? "Could not load gamekey.csv. Serve this site over HTTP (not as a raw file)."
+          : `Could not load gamekey.csv: ${err.message || err}`,
         "error"
       );
       return;
