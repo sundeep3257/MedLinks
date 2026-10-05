@@ -17,7 +17,7 @@
     4: "tricky",
   };
 
-  /** @type {Array<{date:string, number:number, groups:Array}>} */
+  /** @type {Array<{date:string, number:number, theme:string, groups:Array}>} */
   let puzzles = [];
   let progress = null;
   let state = null;
@@ -168,6 +168,7 @@
       list.push({
         date,
         number: list.length + 1,
+        theme: idx.theme != null ? String(cells[idx.theme] || "").trim() : "",
         groups,
       });
     }
@@ -316,6 +317,7 @@
 
   const els = {
     puzzleDateLabel: document.getElementById("puzzle-date-label"),
+    puzzleTheme: document.getElementById("puzzle-theme"),
     prevBtn: document.getElementById("prev-btn"),
     nextBtn: document.getElementById("next-btn"),
     puzzleSelectBtn: document.getElementById("puzzle-select-btn"),
@@ -628,6 +630,13 @@
     els.puzzleDateLabel.textContent = isToday
       ? `Today · ${formatDisplayDate(state.puzzle.date)}`
       : formatDisplayDate(state.puzzle.date);
+
+    if (els.puzzleTheme) {
+      const theme = (state.puzzle.theme || "").trim();
+      els.puzzleTheme.textContent = theme;
+      els.puzzleTheme.hidden = !theme;
+      els.puzzleTheme.classList.toggle("hidden", !theme);
+    }
 
     els.todayBtn.classList.toggle("hidden", isToday);
 

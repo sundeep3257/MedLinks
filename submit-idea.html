@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Submit a MedLinks puzzle idea for a future daily puzzle." />
+  <meta name="theme-color" content="#faf9f6" />
+  <title>Submit a Puzzle Idea · MedLinks</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="submit-page">
+  <a class="skip-link" href="#submit-form">Skip to form</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1 class="brand-title"><a class="brand-link" href="index.html">MedLinks</a></h1>
+      </div>
+      <div class="header-actions">
+        <a class="icon-btn" href="index.html" aria-label="Back to MedLinks" title="Back to MedLinks">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M3 10h18M8 2v4M16 2v4"/>
+          </svg>
+        </a>
+        <a class="icon-btn" href="index.html" aria-label="How to play" title="How to play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.5 9.5a2.5 2.5 0 1 1 3.8 2.1c-.8.5-1.3 1-1.3 2"/>
+            <circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main submit-main">
+    <div class="submit-top">
+      <a class="nav-btn submit-back" href="index.html" aria-label="Back to MedLinks">‹</a>
+      <div class="submit-heading">
+        <h2 class="submit-title">Submit a Puzzle Idea</h2>
+        <p class="submit-lede">Share a set of four connected medical terms for us to consider in a future MedLinks puzzle.</p>
+      </div>
+    </div>
+
+    <form class="submit-form" id="submit-form" novalidate>
+      <input type="hidden" name="access_key" value="c38b85e0-0e4f-43bd-a66e-3de15e8c384b" />
+      <input type="hidden" name="subject" value="New MedLinks Puzzle Idea" />
+      <input type="checkbox" name="botcheck" class="submit-honeypot" tabindex="-1" autocomplete="off" />
+
+      <section class="submit-block submit-block--neutral">
+        <div class="submit-field-row">
+          <label class="submit-label" for="submitter-name">Name</label>
+          <input class="submit-input" id="submitter-name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
+        </div>
+        <div class="submit-field-row">
+          <label class="submit-label" for="submitter-email">Email</label>
+          <input class="submit-input" id="submitter-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        </div>
+      </section>
+
+      <section class="submit-block submit-block--neutral">
+        <label class="submit-label" for="theme">Theme</label>
+        <input class="submit-input" id="theme" name="theme" type="text" required placeholder="e.g. Pregnancy, Cardiology, Pharmacology, etc." />
+      </section>
+
+      <section class="submit-block submit-block--cat1" data-category="1">
+        <h3 class="submit-cat-heading">Category 1</h3>
+        <label class="submit-label" for="easy_category">Category title</label>
+        <input class="submit-input" id="easy_category" name="easy_category" type="text" required placeholder="e.g. Special Pregnancy Classifications" />
+        <div class="submit-terms">
+          <div class="submit-term">
+            <label class="submit-label" for="easy_term1">Term 1</label>
+            <input class="submit-input" id="easy_term1" name="easy_term1" type="text" required placeholder="e.g. Ectopic" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="easy_term2">Term 2</label>
+            <input class="submit-input" id="easy_term2" name="easy_term2" type="text" required placeholder="e.g. Molar" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="easy_term3">Term 3</label>
+            <input class="submit-input" id="easy_term3" name="easy_term3" type="text" required placeholder="e.g. Heterotopic" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="easy_term4">Term 4</label>
+            <input class="submit-input" id="easy_term4" name="easy_term4" type="text" required placeholder="e.g. Chemical" />
+          </div>
+        </div>
+        <label class="submit-label" for="easy_explanation">Short Description</label>
+        <input class="submit-input" id="easy_explanation" name="easy_explanation" type="text" required placeholder="e.g. Special pregnancy classifications." />
+      </section>
+
+      <section class="submit-block submit-block--cat2" data-category="2">
+        <h3 class="submit-cat-heading">Category 2</h3>
+        <label class="submit-label" for="medium_category">Category title</label>
+        <input class="submit-input" id="medium_category" name="medium_category" type="text" required placeholder="e.g. Causes of Placental Abruption" />
+        <div class="submit-terms">
+          <div class="submit-term">
+            <label class="submit-label" for="medium_term1">Term 1</label>
+            <input class="submit-input" id="medium_term1" name="medium_term1" type="text" required placeholder="e.g. Trauma" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="medium_term2">Term 2</label>
+            <input class="submit-input" id="medium_term2" name="medium_term2" type="text" required placeholder="e.g. Cocaine" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="medium_term3">Term 3</label>
+            <input class="submit-input" id="medium_term3" name="medium_term3" type="text" required placeholder="e.g. Hypertension" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="medium_term4">Term 4</label>
+            <input class="submit-input" id="medium_term4" name="medium_term4" type="text" required placeholder="e.g. Multiparity" />
+          </div>
+        </div>
+        <label class="submit-label" for="medium_explanation">Short Description</label>
+        <input class="submit-input" id="medium_explanation" name="medium_explanation" type="text" required placeholder="e.g. Common causes of placental abruption." />
+      </section>
+
+      <section class="submit-block submit-block--cat3" data-category="3">
+        <h3 class="submit-cat-heading">Category 3</h3>
+        <label class="submit-label" for="hard_category">Category title</label>
+        <input class="submit-input" id="hard_category" name="hard_category" type="text" required placeholder="e.g. Gestational Hormones" />
+        <div class="submit-terms">
+          <div class="submit-term">
+            <label class="submit-label" for="hard_term1">Term 1</label>
+            <input class="submit-input" id="hard_term1" name="hard_term1" type="text" required placeholder="e.g. hCG" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="hard_term2">Term 2</label>
+            <input class="submit-input" id="hard_term2" name="hard_term2" type="text" required placeholder="e.g. hPL" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="hard_term3">Term 3</label>
+            <input class="submit-input" id="hard_term3" name="hard_term3" type="text" required placeholder="e.g. Progesterone" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="hard_term4">Term 4</label>
+            <input class="submit-input" id="hard_term4" name="hard_term4" type="text" required placeholder="e.g. Estriol" />
+          </div>
+        </div>
+        <label class="submit-label" for="hard_explanation">Short Description</label>
+        <input class="submit-input" id="hard_explanation" name="hard_explanation" type="text" required placeholder="e.g. Key gestational hormones." />
+      </section>
+
+      <section class="submit-block submit-block--cat4" data-category="4">
+        <h3 class="submit-cat-heading">Category 4</h3>
+        <label class="submit-label" for="tricky_category">Category title</label>
+        <input class="submit-input" id="tricky_category" name="tricky_category" type="text" required placeholder="e.g. Hypertensive Disorders of Pregnancy" />
+        <div class="submit-terms">
+          <div class="submit-term">
+            <label class="submit-label" for="tricky_term1">Term 1</label>
+            <input class="submit-input" id="tricky_term1" name="tricky_term1" type="text" required placeholder="e.g. Gestational HTN" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="tricky_term2">Term 2</label>
+            <input class="submit-input" id="tricky_term2" name="tricky_term2" type="text" required placeholder="e.g. Preeclampsia" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="tricky_term3">Term 3</label>
+            <input class="submit-input" id="tricky_term3" name="tricky_term3" type="text" required placeholder="e.g. Eclampsia" />
+          </div>
+          <div class="submit-term">
+            <label class="submit-label" for="tricky_term4">Term 4</label>
+            <input class="submit-input" id="tricky_term4" name="tricky_term4" type="text" required placeholder="e.g. HELLP" />
+          </div>
+        </div>
+        <label class="submit-label" for="tricky_explanation">Short Description</label>
+        <input class="submit-input" id="tricky_explanation" name="tricky_explanation" type="text" required placeholder="e.g. Spectrum of pregnancy-related hypertension." />
+      </section>
+
+      <section class="submit-block submit-block--neutral">
+        <label class="submit-label" for="notes">Notes</label>
+        <textarea class="submit-input submit-textarea" id="notes" name="notes" required rows="4" placeholder="Any additional context, fun facts, or references."></textarea>
+      </section>
+
+      <p class="submit-status" id="submit-status" role="status" aria-live="polite"></p>
+
+      <button type="submit" class="btn btn-primary submit-submit-btn" id="submit-idea-submit" disabled>
+        Submit Puzzle Idea
+      </button>
+      <a class="submit-home-link" href="index.html">Back to MedLinks</a>
+    </form>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const form = document.getElementById("submit-form");
+      const submitBtn = document.getElementById("submit-idea-submit");
+      const statusEl = document.getElementById("submit-status");
+      const requiredFields = Array.from(form.querySelectorAll("[required]"));
+
+      function fieldFilled(field) {
+        if (field.type === "email") {
+          return field.value.trim() !== "" && field.checkValidity();
+        }
+        return field.value.trim() !== "";
+      }
+
+      function updateSubmitEnabled() {
+        const ready = requiredFields.every(fieldFilled);
+        submitBtn.disabled = !ready;
+      }
+
+      function setStatus(message, kind) {
+        statusEl.textContent = message || "";
+        statusEl.className = "submit-status" + (kind ? " is-" + kind : "");
+      }
+
+      requiredFields.forEach((field) => {
+        field.addEventListener("input", updateSubmitEnabled);
+        field.addEventListener("change", updateSubmitEnabled);
+        field.addEventListener("blur", updateSubmitEnabled);
+      });
+      updateSubmitEnabled();
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        updateSubmitEnabled();
+        if (submitBtn.disabled) {
+          setStatus("Please fill out every field before submitting.", "error");
+          const firstEmpty = requiredFields.find((field) => !fieldFilled(field));
+          if (firstEmpty) firstEmpty.focus();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting…";
+        setStatus("");
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        delete data.botcheck;
+
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+          const result = await response.json();
+          if (!response.ok || !result.success) {
+            throw new Error(result.message || "Submission failed.");
+          }
+
+          form.reset();
+          updateSubmitEnabled();
+          setStatus("Thanks! Your puzzle idea was submitted.", "success");
+          submitBtn.textContent = "Submit Puzzle Idea";
+        } catch (err) {
+          setStatus(err.message || "Something went wrong. Please try again.", "error");
+          submitBtn.textContent = "Submit Puzzle Idea";
+          updateSubmitEnabled();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
